@@ -1,20 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Fretes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div *ngFor="let frete of getFretes()">
+    <ion-list lines="full" class="ion-text-wrap">
+      <ion-item>
+        <ion-label>
+          <h2 margin>
+            {{ frete.cidade_origem }} / {{ frete.estado_origem}} para {{ frete.cidade_destino }} / {{
+            frete.estado_destino}}
+            <!--<span class="date">
+            <ion-note>{{ message.date }}</ion-note>
+            <ion-icon name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
+          </span>-->
+          </h2>
+          Data da Postagem: {{ frete.data_postagem }} 
+        </ion-label>
+        <button (click)="openFreteDetalhe()">
+          Detalhes
+        </button>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
