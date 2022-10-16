@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VeiculoTO } from 'src/model/VeiculoTO';
+import { EstadoService } from 'src/services/estado.service';
 import { VeiculoService } from 'src/services/veiculo.service';
 
 
@@ -56,13 +57,16 @@ export class FreteFormPage implements OnInit {
       "veiculo": "Fiorino"
     }
   ];
+  public estados: any[] = [];
+  public municipios: any[] = [];
 
-
-  constructor(private veiculoService: VeiculoService) { }
+  public estadoSelecionado: any = undefined;
+  public cidadeSelecionada: any = undefined;
+  constructor(private veiculoService: VeiculoService,
+    private estadoService: EstadoService) { }
 
   ngOnInit() {
-    console.log(this.veiculos);
-    //this.carregaVeiculo()
+    this.carregaEstados();
   }
 
   carregaVeiculo() {
@@ -71,6 +75,21 @@ export class FreteFormPage implements OnInit {
     });
   }
 
+  carregaEstados() {
+    this.estadoService.getEstados().subscribe(data => {
+      this.estados = data;
+    });
+  }
 
+  onChange() {
+    this.carregaMunicipios();
+  }
+
+  carregaMunicipios() {
+    this.estadoService.getMunicipios(this.estadoSelecionado.id).subscribe(data => {
+      this.municipios = [];
+      this.municipios = data;
+    });
+  }
 
 }

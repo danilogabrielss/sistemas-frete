@@ -9,9 +9,18 @@
   <form action="">
     <ion-grid>
       <ion-row>
-        <ion-col col-3>
-          <ion-select placeholder="Origem Estado">
-            <!--<ion-select-option *ngFor="let of " value="veiculo.id">{{veiculo.veiculo}}</ion-select-option>-->
+        <ion-col col-6>
+          <ion-item>
+            <ion-select placeholder="Origem Estado" (ionChange)="onChange();" [(ngModel)]="estadoSelecionado"
+              name="estadoSelecionado">
+              <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-select placeholder="Origem Cidade" [(ngModel)]="cidadeSelecionada" name="cidadeSelecionada">
+            <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+            </ion-select-option>
           </ion-select>
         </ion-col>
       </ion-row>
