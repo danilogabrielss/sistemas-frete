@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { VeiculoService } from 'src/services/veiculo.service';
 
 const routes: Routes = [
   {
@@ -20,6 +19,11 @@ const routes: Routes = [
     path: 'frete-form',
     loadChildren: () => import('./frete-form/frete-form.module').then(m => m.FreteFormPageModule)
   },
+  {
+    path: 'login-caminhoneiro',
+    loadChildren: () => import('./login-caminhoneiro/login-caminhoneiro.module').then(m => m.LoginCaminhoneiroPageModule)
+  },
+
 
 ];
 
