@@ -1,4 +1,9 @@
 <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
@@ -27,10 +32,11 @@
           </ion-row>
         </ion-grid>
 
-        <label id="lblErro" class="warning"></label><br>
+        <ion-label id="lblErro" color="danger"></ion-label><br>
         <ion-button (click)="logar()">Fazer login</ion-button>
         <div padding>
-          Caso não possua cadastro, <a class="link" href="/frete-form">clique aqui</a> para se cadastrar
+          Caso não possua cadastro, <a class="link" href="/frete-form">clique aqui</a> para se cadastrar.<br>
+          Caso tenha esquecido sua senha, <a class="link" href="/frete-form">clique aqui.</a>
         </div>
       </form>
     </div>

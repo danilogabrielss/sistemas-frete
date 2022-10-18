@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  public appPages = [
+    { title: 'Tela inicial', url: '/home', icon: 'home' },
+    { title: 'Login para caminhoneiro', url: '/login-caminhoneiro', icon: 'log-in' },
+    { title: 'Cadastro de Frete', url: '/frete-form', icon: 'add' },
+
+    /*{ title: 'Archived', url: '/folder/Archived', icon: 'archive' },
+    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },*/
+  ];
+  /*public labels = ['Tela inicial', 'Login para caminhoneiro', 'Cadastro de Frete'];*/
+  constructor() { }
 }
