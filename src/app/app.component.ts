@@ -10,6 +10,7 @@ export class AppComponent {
     { title: 'Tela inicial', url: '/home', icon: 'home' },
     { title: 'Login para caminhoneiro', url: '/login-caminhoneiro', icon: 'log-in' },
     { title: 'Cadastro de Frete', url: '/frete-form', icon: 'add' },
+    { title: 'Listagem de Frete', url: '/frete-list', icon: 'list' },
 
     /*{ title: 'Archived', url: '/folder/Archived', icon: 'archive' },
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },*/

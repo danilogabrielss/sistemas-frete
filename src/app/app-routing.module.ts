@@ -16,10 +16,13 @@ const routes: Routes = [
     loadChildren: () => import('../pages/frete-form/frete-form.module').then(m => m.FreteFormPageModule)
   },
   {
+    path: 'frete-list',
+    loadChildren: () => import('../pages/frete-list/frete-list.module').then(m => m.FreteListPageModule)
+  },
+  {
     path: 'login-caminhoneiro',
     loadChildren: () => import('../pages/login-caminhoneiro/login-caminhoneiro.module').then(m => m.LoginCaminhoneiroPageModule)
-  },
-
+  }
 
 ];
 
