@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FreteTO } from 'src/model/FreteTO';
 import { DataService, Message } from '../../services/data.service';
-import { ViewMessagePage } from '../view-message/view-message.page';
 
 @Component({
   selector: 'app-home',
@@ -26,10 +25,6 @@ export class HomePage {
 
   getFretes() {
     return this.dataService.getFretes();
-  }
-
-  openFreteDetalhe(){
-    this.navCtrl.navigateForward('/view-message');
   }
 
 }
