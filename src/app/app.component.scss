@@ -117,3 +117,8 @@ ion-menu ion-content {
   ion-item.selected {
     --color: var(--ion-color-primary);
   }
+  
+  ion-split-pane {
+    --side-max-width: 18%;
+    --side-min-width: 270px;
+  }
