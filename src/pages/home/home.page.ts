@@ -10,8 +10,7 @@ import { DataService, Message } from '../../services/data.service';
 })
 export class HomePage {
   fretes: FreteTO[] = [];
-  constructor(private dataService: DataService,
-    private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) { }
 
   refresh(ev) {
     setTimeout(() => {
@@ -19,12 +18,7 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.dataService.getMessages();
+  goToLogin(tela: string) {
+    this.navCtrl.navigateRoot('/' + tela);
   }
-
-  getFretes() {
-    return this.dataService.getFretes();
-  }
-
 }
