@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login-caminhoneiro',
     loadChildren: () => import('../pages/login-caminhoneiro/login-caminhoneiro.module').then(m => m.LoginCaminhoneiroPageModule)
+  },
+  {
+    path: 'procura-frete',
+    loadChildren: () => import('../pages/procura-frete/procura-frete.module').then( m => m.ProcuraFretePageModule)
   }
 
 ];

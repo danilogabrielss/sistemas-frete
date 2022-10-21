@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Procura Fretes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <form [formGroup]="procuraFreteForm" (ngSubmit)="logar()">
+
+      <h2>Insira qual cidade você estará.</h2>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-select placeholder="Origem Estado" formControlName="estado_origem" (ionChange)="onChange();"
+                [(ngModel)]="estado_origem">
+                <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-select placeholder="Origem Cidade" formControlName="cidade_origem" [(ngModel)]="cidade_origem">
+              <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+              </ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <h2>Selecione a data de quando voce estará na cidade escolhida anteriormente</h2>
+
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime (ionChange)="getDate($event)" id="datetime" presentation="date" showDefaultButtons="true"
+            [min]="dataHoje"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+
+      <ion-button (click)="salvarProcuraFrete()">Cadastrar Notificação</ion-button>
+
+    </form>
+
+  </div>
+</ion-content>
