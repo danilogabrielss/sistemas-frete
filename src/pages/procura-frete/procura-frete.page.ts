@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstadoService } from 'src/services/estado.service';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   selector: 'app-procura-frete',
@@ -16,9 +17,8 @@ export class ProcuraFretePage implements OnInit {
   public municipios: any[] = [];
   public estado_origem: any = undefined;
   public cidade_origem: any = undefined;
-  /*estado_destino,
-      estado_origem,
-      data_inicio,*/
+  public estado_destino: any = undefined;
+  public cidade_destino: any = undefined;
   public data_inicio = undefined;
 
   constructor(public fb: FormBuilder, private estadoService: EstadoService) { }
@@ -29,6 +29,8 @@ export class ProcuraFretePage implements OnInit {
       estado_origem: ['', Validators.required],
       cidade_origem: ['', Validators.required],
       data_inicio: ['', Validators.required],
+      estado_destino: ['', Validators.required],
+      cidade_destino: ['', Validators.required],
     });
     this.carregaEstados();
   }
