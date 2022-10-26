@@ -8,8 +8,12 @@ export class FreteService {
   url = 'http://localhost:3030/fretes';
   constructor(private httpClient: HttpClient) { }
 
-  getFretes(){
+  getFretes() {
     return this.httpClient.get<any[]>(this.url, { responseType: "json" });
+  }
+
+  getFreteByid(id) {
+    return this.httpClient.get<any>(this.url + '/' + id, { responseType: "json" });
   }
 
   /*public getMessages(): Frete[] {
