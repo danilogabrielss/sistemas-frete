@@ -1,12 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FreteService {
-  
+  url = 'http://localhost:3030/fretes';
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
+  getFretes(){
+    return this.httpClient.get<any[]>(this.url, { responseType: "json" });
+  }
 
   /*public getMessages(): Frete[] {
     return this.messages;

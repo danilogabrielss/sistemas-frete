@@ -73,7 +73,7 @@ export class DataService {
   ];
 
   public fretes: FreteTO[] = [
-    {
+    /*{
       id: '1',
       cidade_origem: 'Santos',
       estado_origem: 'SP',
@@ -82,11 +82,7 @@ export class DataService {
       data_postagem: '07/10/2022',
       data_coleta: '07/10/2022',
       data_entrega: '10/10/2022',
-      descricao: 'Container de 20',
-      /*veiculo: 'Carreta LS',
-      carroceiria: 'Porta Container',
-      valor: 1500,
-      produto: 'Container 40 pés'*/
+      descricao: 'Container de 20'      
     }, {
       id: '1',
       cidade_origem: 'Cubatão',
@@ -96,13 +92,8 @@ export class DataService {
       data_postagem: '07/10/2022',
       data_coleta: '07/10/2022',
       data_entrega: '10/10/2022',
-      descricao: 'Container de 40',
-      /*   
-      veiculo: 'Bitrem',
-      carroceiria: 'Graneleiro',
-      valor: 2200,
-      produto: 'Adubo'*/
-    }
+      descricao: 'Container de 40'      
+    }*/
   ];
 
   constructor() { }
