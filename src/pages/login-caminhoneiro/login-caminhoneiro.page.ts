@@ -31,6 +31,8 @@ export class LoginCaminhoneiroPage implements OnInit {
 
     this.loginService.logarCaminhoneiro(params).subscribe(data => {
       this.alerta(data.mensagem);
+      //Usar localStorage para salvar token e 
+      //localStorage
     }, error => {
       var mensagemAlerta: string = '';
       error.error.errors.forEach(element => {
