@@ -61,8 +61,8 @@ export class FreteListPage {
     });
   }
 
-  openFreteDetalhe(){
-    this.navCtrl.navigateRoot('');
+  openFreteDetalhe(frete) {
+    this.navCtrl.navigateRoot('frete-detail/' + frete);
   }
 
 }

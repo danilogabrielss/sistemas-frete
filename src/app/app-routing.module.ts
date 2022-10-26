@@ -26,7 +26,12 @@ const routes: Routes = [
   {
     path: 'procura-frete',
     loadChildren: () => import('../pages/procura-frete/procura-frete.module').then( m => m.ProcuraFretePageModule)
+  },
+  {
+    path: 'frete-detail/:id',
+    loadChildren: () => import('../pages/frete-detail/frete-detail.module').then( m => m.FreteDetailPageModule)
   }
+
 
 ];
 
