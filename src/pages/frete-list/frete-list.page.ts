@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { FreteTO } from 'src/model/FreteTO';
 import { EstadoService } from 'src/services/estado.service';
@@ -15,7 +16,7 @@ export class FreteListPage {
   estados: any[] = [];
   municipios: any[] = [];
   constructor(private dataService: DataService,
-    private navCtrl: NavController, private freteService: FreteService, private estadoService: EstadoService) {
+    private navCtrl: NavController, private freteService: FreteService, private estadoService: EstadoService, private router: Router) {
     this.getEstados();
     this.getFretes();
   }
@@ -62,7 +63,7 @@ export class FreteListPage {
   }
 
   openFreteDetalhe(frete) {
-    this.navCtrl.navigateRoot('frete-detail/' + frete);
+    this.router.navigateByUrl('frete-detail/' + frete.id, frete);
   }
 
 }
