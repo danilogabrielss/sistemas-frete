@@ -9,11 +9,11 @@ export class FreteService {
   constructor(private httpClient: HttpClient) { }
 
   getFretes() {
-    return this.httpClient.get<any[]>(this.url, { responseType: "json" });
+    return this.httpClient.get<any[]>(this.url);
   }
 
   getFreteByid(id) {
-    return this.httpClient.get<any>(this.url + '/' + id, { responseType: "json" });
+    return this.httpClient.get<any>(this.url + '/' + id);
   }
 
   /*public getMessages(): Frete[] {

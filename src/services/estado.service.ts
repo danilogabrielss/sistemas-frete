@@ -13,6 +13,11 @@ export class EstadoService {
 
   urlTodosMunicipios: string = 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome';
 
+  urlMunicipioById: string = 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios/';
+
+  urlEstadoById: string = '  https://servicodados.ibge.gov.br/api/v1/localidades/estados/';
+
+
   getEstados() {
     return this.httpClient.get<any[]>(this.urlEstado, { responseType: "json" });
   }
@@ -23,6 +28,14 @@ export class EstadoService {
 
   getTodosMunicipios() {
     return this.httpClient.get<any[]>(this.urlTodosMunicipios, { responseType: "json" });
+  }
+
+  getMunicipioById(id: any) {
+    return this.httpClient.get<any>(this.urlMunicipioById + id, { responseType: "json" });
+  }
+
+  getEstadoById(id: any) {
+    return this.httpClient.get<any>(this.urlEstadoById + '/' + id, { responseType: "json" });
   }
 
 }

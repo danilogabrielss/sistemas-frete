@@ -6,6 +6,7 @@ import { EstadoService } from 'src/services/estado.service';
 import { FreteService } from 'src/services/frete.service';
 import { DataService, Message } from '../../services/data.service';
 
+
 @Component({
   selector: 'frete-list',
   templateUrl: 'frete-list.page.html',
@@ -15,8 +16,7 @@ export class FreteListPage {
   listafrete: FreteTO[] = [];
   estados: any[] = [];
   municipios: any[] = [];
-  constructor(private dataService: DataService,
-    private navCtrl: NavController, private freteService: FreteService, private estadoService: EstadoService, private router: Router) {
+  constructor(private dataService: DataService, private freteService: FreteService, private estadoService: EstadoService, private router: Router, private navCtrl: NavController) {
     this.getEstados();
     this.getFretes();
   }
@@ -62,8 +62,10 @@ export class FreteListPage {
     });
   }
 
-  openFreteDetalhe(frete) {
-    this.router.navigateByUrl('frete-detail/' + frete.id, frete);
+  async openFreteDetalhe(frete: any) {
+    //const nav = await this.navCtrl.navigateRoot('frete-detail' + frete.id);
+
+    this.router.navigateByUrl('frete-detail/' + frete.id);
   }
 
 }
