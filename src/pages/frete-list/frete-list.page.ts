@@ -36,10 +36,11 @@ export class FreteListPage {
   }
 
   getFretes() {
-    this.freteService.getFretes().subscribe(data => {
-      this.listafrete = data;
+    this.freteService.getFretes().subscribe((data: any) => {
+      this.listafrete = data.fretes;
       this.listafrete.forEach(frete => {
         //frete.data_postagem = new Date(frete.data_postagem.toISOString());
+        debugger
         this.estados.forEach(estado => {
           if (frete.estado_origem == estado.id) {
             frete.ds_estado_origem = estado.sigla;
