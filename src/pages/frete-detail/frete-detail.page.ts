@@ -42,12 +42,13 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblDestino').innerHTML = this.frete.ds_cidade_destino + '/' + this.frete.ds_estado_destino;
         document.getElementById('lblDescricao').innerHTML = this.frete.descricao;
         document.getElementById('lblProduto').innerHTML = this.frete.produto;
-        document.getElementById('lblValor').innerHTML = 'R$' + this.frete.preco;
-        document.getElementById('lblRastreado').innerHTML = this.frete.rastreamento == true ? 'Sim' : 'Não';
-        document.getElementById('lblAgenciado').innerHTML = this.frete.agenciamento == true ? 'Sim' : 'Não';
-        document.getElementById('lblLona').innerHTML = this.frete.lona == true ? 'Sim' : 'Não';
-
-
+        document.getElementById('lblPreco').innerHTML = 'R$' + this.frete.preco;
+        document.getElementById('lblRastreado').innerHTML = this.frete.rastreamento == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
+        document.getElementById('lblAgenciado').innerHTML = this.frete.agenciamento == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
+        document.getElementById('lblLona').innerHTML = this.frete.lona == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
+        document.getElementById('lblPeso').innerHTML = this.frete.peso + 'kgs';
+        document.getElementById('lblEspecie').innerHTML = this.frete.tipo_carga;
+        
 
 
 
