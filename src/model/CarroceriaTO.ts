@@ -1,4 +1,4 @@
 export class CarroceriaTO {
-    id: string
+    id: number;
     carroceria: string
 }

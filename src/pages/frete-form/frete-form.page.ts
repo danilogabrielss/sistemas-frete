@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarroceriaTO } from 'src/model/CarroceriaTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
 import { EstadoService } from 'src/services/estado.service';
 import { VeiculoService } from 'src/services/veiculo.service';
@@ -57,6 +58,45 @@ export class FreteFormPage implements OnInit {
       "veiculo": "Fiorino"
     }
   ];
+  carrocerias: CarroceriaTO[] = 
+  [
+    {
+      id: 9,
+      "carroceria": "Apenas Cavalo"
+    },
+    {
+      id: 1,
+      "carroceria": "Baú"
+    },
+    {
+      id: 2,
+      "carroceria": "Baú Frigorífico"
+    },
+    {
+      id: 4,
+      "carroceria": "Caçamba"
+    },
+    {
+      id: 5,
+      "carroceria": "Grade Baixa"
+    },
+    {
+      id: 6,
+      "carroceria": "Graneleiro"
+    },
+    {
+      id: 8,
+      "carroceria": "Porta Container"
+    },
+    {
+      id: 7,
+      "carroceria": "Prancha"
+    },
+    {
+      id: 3,
+      "carroceria": "Sider"
+    }
+  ]
   public estados: any[] = [];
   public municipios: any[] = [];
 
