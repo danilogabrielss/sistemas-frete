@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Cadastro do Caminhoneiro</ion-title>
+    <ion-title>Cadastro de Frete</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -27,10 +27,21 @@
           </ion-select>
         </ion-col>
       </ion-row>
-      <ion-select placeholder="Veículo" [multiple]="true">
-        <!--dentro de ion-select (ionChange)=""-->
-        <ion-select-option *ngFor="let veiculo of veiculos" value="veiculo.id">{{veiculo.veiculo}}</ion-select-option>
-      </ion-select>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-select placeholder="Veículo" [multiple]="true">
+            <ion-select-option *ngFor="let veiculo of veiculos" value="veiculo.id">{{veiculo.veiculo}}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col col-6>
+          <ion-select placeholder="Carroceria" [multiple]="true">
+            <ion-select-option *ngFor="let carroceria of carrocerias" value="carroceria.id">{{carroceria.carroceria}}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </form>
 </ion-content>
