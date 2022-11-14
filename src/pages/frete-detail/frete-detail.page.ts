@@ -48,7 +48,7 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblLona').innerHTML = this.frete.lona == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
         document.getElementById('lblPeso').innerHTML = this.frete.peso + 'kgs';
         document.getElementById('lblEspecie').innerHTML = this.frete.tipo_carga;
-        
+        //document.getElementById('lblNmEmpresa').innerHTML = this.frete.cidade_destino;
 
 
 
