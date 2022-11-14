@@ -21,11 +21,4 @@ export class FreteService {
     return this.httpClient.post(this.url, frete);
   }
 
-  /*public getMessages(): Frete[] {
-    return this.messages;
-  }
-
-  public getMessageById(id: number): Frete {
-    return this.messages[id];
-  }*/
 }
