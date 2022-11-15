@@ -31,14 +31,15 @@
       <ion-row>
         <ion-col col-6>
           <ion-item>
-            <ion-select placeholder="Destino Estado" (ionChange)="onChangeDestino();" [(ngModel)]="estadoDestinoSelecionado"
-              name="estadoDestinoSelecionado">
+            <ion-select placeholder="Destino Estado" (ionChange)="onChangeDestino();"
+              [(ngModel)]="estadoDestinoSelecionado" name="estadoDestinoSelecionado">
               <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col col-6>
-          <ion-select placeholder="Destino Cidade" [(ngModel)]="cidadeDestinoSelecionada" name="cidadeDestinoSelecionada">
+          <ion-select placeholder="Destino Cidade" [(ngModel)]="cidadeDestinoSelecionada"
+            name="cidadeDestinoSelecionada">
             <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
             </ion-select-option>
           </ion-select>
