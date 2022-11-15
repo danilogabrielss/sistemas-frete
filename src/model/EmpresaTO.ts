@@ -5,5 +5,16 @@ export class EmpresaTO {
     descricao: string;
     imagem_perfil: string;
     senha: string;
-    telefone: string[];
+    Contatos_empresa: ContatoEmpresaTO[];
+}
+
+export class ContatoEmpresaTO {
+    id: number;
+    telefone: string;
+    celular: string;
+    facebook: string;
+    whatsapp: string;
+    linkedin: string;
+    telegram: string;
+    empresaId: string;
 }
