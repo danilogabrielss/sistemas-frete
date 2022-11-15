@@ -58,50 +58,56 @@ export class FreteFormPage implements OnInit {
       "veiculo": "Fiorino"
     }
   ];
-  carrocerias: CarroceriaTO[] = 
-  [
-    {
-      id: 9,
-      "carroceria": "Apenas Cavalo"
-    },
-    {
-      id: 1,
-      "carroceria": "Baú"
-    },
-    {
-      id: 2,
-      "carroceria": "Baú Frigorífico"
-    },
-    {
-      id: 4,
-      "carroceria": "Caçamba"
-    },
-    {
-      id: 5,
-      "carroceria": "Grade Baixa"
-    },
-    {
-      id: 6,
-      "carroceria": "Graneleiro"
-    },
-    {
-      id: 8,
-      "carroceria": "Porta Container"
-    },
-    {
-      id: 7,
-      "carroceria": "Prancha"
-    },
-    {
-      id: 3,
-      "carroceria": "Sider"
-    }
-  ]
+  carrocerias: CarroceriaTO[] =
+    [
+      {
+        id: 9,
+        "carroceria": "Apenas Cavalo"
+      },
+      {
+        id: 1,
+        "carroceria": "Baú"
+      },
+      {
+        id: 2,
+        "carroceria": "Baú Frigorífico"
+      },
+      {
+        id: 4,
+        "carroceria": "Caçamba"
+      },
+      {
+        id: 5,
+        "carroceria": "Grade Baixa"
+      },
+      {
+        id: 6,
+        "carroceria": "Graneleiro"
+      },
+      {
+        id: 8,
+        "carroceria": "Porta Container"
+      },
+      {
+        id: 7,
+        "carroceria": "Prancha"
+      },
+      {
+        id: 3,
+        "carroceria": "Sider"
+      }
+    ]
   public estados: any[] = [];
   public municipios: any[] = [];
 
+  public estadosDestino: any[] = [];
+  public municipiosDestino: any[] = [];
+
   public estadoSelecionado: any = undefined;
   public cidadeSelecionada: any = undefined;
+
+  public estadoDestinoSelecionado: any = undefined;
+  public cidadeDestinoSelecionada: any = undefined;
   constructor(private veiculoService: VeiculoService,
     private estadoService: EstadoService) { }
 
@@ -122,11 +128,14 @@ export class FreteFormPage implements OnInit {
   }
 
   onChange() {
-    this.carregaMunicipios();
+    this.estadoService.getMunicipios(this.estadoSelecionado.id).subscribe(data => {
+      this.municipios = [];
+      this.municipios = data;
+    });
   }
 
-  carregaMunicipios() {
-    this.estadoService.getMunicipios(this.estadoSelecionado.id).subscribe(data => {
+  onChangeDestino() {
+    this.estadoService.getMunicipios(this.estadoDestinoSelecionado.id).subscribe(data => {
       this.municipios = [];
       this.municipios = data;
     });

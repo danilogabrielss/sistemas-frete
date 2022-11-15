@@ -24,5 +24,5 @@ export class FreteTO {
     agenciamento: boolean;
     rastreamento: boolean;
     pedagio: boolean;
-
+    empresaId: number;
 }

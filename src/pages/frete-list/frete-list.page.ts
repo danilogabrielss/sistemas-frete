@@ -63,8 +63,6 @@ export class FreteListPage {
   }
 
   async openFreteDetalhe(frete: any) {
-    //const nav = await this.navCtrl.navigateRoot('frete-detail' + frete.id);
-
     this.router.navigateByUrl('frete-detail/' + frete.id);
   }
 

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
+import { EmpresaTO } from 'src/model/EmpresaTO';
 import { FreteTO } from 'src/model/FreteTO';
+import { EmpresaService } from 'src/services/empresa.service';
 import { EstadoService } from 'src/services/estado.service';
 import { FreteService } from 'src/services/frete.service';
 
@@ -15,15 +17,18 @@ export class FreteDetailPage implements OnInit {
 
   idFrete: any;
   frete: FreteTO;
+  empresa: EmpresaTO;
 
   constructor(private router: ActivatedRoute,
-    private estadoService: EstadoService, private freteService: FreteService, private navCtrl: NavController) {
+    private estadoService: EstadoService, private freteService: FreteService, private navCtrl: NavController, private empresaService: EmpresaService) {
     this.router.params.subscribe((params: any) => {
       this.idFrete = params.id;
+      this.carregaFrete();
     });
   }
+  ngOnInit() { }
 
-  ngOnInit() {
+  carregaFrete() {
     this.freteService.getFreteByid(this.idFrete).subscribe((data: any) => {
       this.frete = data;
       forkJoin({
@@ -31,6 +36,7 @@ export class FreteDetailPage implements OnInit {
         req2: this.estadoService.getMunicipioById(this.frete.cidade_destino),
         req3: this.estadoService.getEstadoById(this.frete.estado_origem),
         req4: this.estadoService.getEstadoById(this.frete.estado_destino),
+        req5: this.empresaService.getEmpresasByid(this.frete.empresaId),
       }).subscribe(res => {
         console.log(res);
         this.frete.ds_cidade_origem = res.req1.nome;
@@ -48,11 +54,22 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblLona').innerHTML = this.frete.lona == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
         document.getElementById('lblPeso').innerHTML = this.frete.peso + 'kgs';
         document.getElementById('lblEspecie').innerHTML = this.frete.tipo_carga;
-        //document.getElementById('lblNmEmpresa').innerHTML = this.frete.cidade_destino;
 
+        var empresa = res.req5;
+        var contatos: string;
+        if (empresa.Contatos_empresa.lenght > 1)
+          empresa.Contatos_empresa.forEach(contato => {
+            contatos += contato.telefone;
+          });
+        else {
+          contatos = empresa.Contatos_empresa.telefone;
+        }
+        this.empresa = empresa;
 
-
+        document.getElementById('lblNmEmpresa').innerHTML = this.empresa.nome;
+        document.getElementById('lblContatoEmpresa').innerHTML = contatos;
       });
+
     });
   }
 
