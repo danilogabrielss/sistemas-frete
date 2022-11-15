@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -25,11 +26,15 @@ const routes: Routes = [
   },
   {
     path: 'procura-frete',
-    loadChildren: () => import('../pages/procura-frete/procura-frete.module').then( m => m.ProcuraFretePageModule)
+    loadChildren: () => import('../pages/procura-frete/procura-frete.module').then(m => m.ProcuraFretePageModule)
   },
   {
     path: 'frete-detail/:id',
-    loadChildren: () => import('../pages/frete-detail/frete-detail.module').then( m => m.FreteDetailPageModule)
+    loadChildren: () => import('../pages/frete-detail/frete-detail.module').then(m => m.FreteDetailPageModule)
+  },
+  {
+    path: 'filtro-frete',
+    loadChildren: () => import('../pages/filtro-frete/filtro-frete.module').then( m => m.FiltroFretePageModule)
   }
 
 
@@ -37,6 +42,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    BrowserModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]

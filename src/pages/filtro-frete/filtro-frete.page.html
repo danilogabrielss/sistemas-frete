@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="chevron-back-outline" (click)="voltarTelaFrete()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Filtro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="filtroFreteForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label>Origem Estado</ion-label>
+            <ion-select formControlName="estado_origem" (ionChange)="onChange();" [(ngModel)]="estado_origem">
+              <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-item>
+        <ion-label>Mesoregião</ion-label>
+        <ion-label disabled="true" id="inputMesoRegOrigem" slot="end"></ion-label>
+      </ion-item>
+
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label>Origem Cidade</ion-label>
+            <ion-select formControlName="cidade_origem" [(ngModel)]="cidade_origem" (ionChange)="setMesoregiao();"
+              [disabled]="this.estado_origem == undefined">
+              <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label>Destino Estado</ion-label>
+            <ion-select formControlName="estado_destino" (ionChange)="onChangeDestino();" [(ngModel)]="estado_destino">
+              <ion-select-option *ngFor="let estado of estadosDestino" [value]="estado">{{estado.nome}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-item>
+        <ion-label>Mesoregião</ion-label>
+        <ion-label disabled="true" id="inputMesoRegDestitno" slot="end"></ion-label>
+      </ion-item>
+
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label>Destino Cidade</ion-label>
+            <ion-select formControlName="cidade_destino" [(ngModel)]="cidade_destino"
+              (ionChange)="setMesoregiaoDestino();" [disabled]="this.estado_destino == undefined">
+              <ion-select-option *ngFor="let municipio of municipiosDestino" [value]="municipio">{{municipio.nome}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label>Veículo</ion-label>
+            <ion-select>
+              <ion-select-option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{veiculo.veiculo}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-item>
+            <ion-label>Carroceria</ion-label>
+            <ion-select>
+              <ion-select-option *ngFor="let carroceria of carrocerias" [value]="carroceria.id">
+                {{carroceria.carroceria}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label>Rastreamento</ion-label>
+            <ion-checkbox slot="end"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+
+        <ion-col col-6>
+          <ion-item>
+            <ion-label>Agenciamento</ion-label>
+            <ion-checkbox slot="end"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-button class="center" (click)="filtrar()">Filtrar</ion-button>
+  </form>
+</ion-content>
