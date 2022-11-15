@@ -15,6 +15,10 @@ export class ProcuraFretePage implements OnInit {
 
   public estados: any[] = [];
   public municipios: any[] = [];
+
+  public estadosDestino: any[] = [];
+  public municipiosDestino: any[] = [];
+
   public estado_origem: any = undefined;
   public cidade_origem: any = undefined;
   public estado_destino: any = undefined;
@@ -24,7 +28,6 @@ export class ProcuraFretePage implements OnInit {
   constructor(public fb: FormBuilder, private estadoService: EstadoService) { }
 
   ngOnInit() {
-    //this.data_inicio = this.dataHoje;
     this.procuraFreteForm = this.fb.group({
       estado_origem: ['', Validators.required],
       cidade_origem: ['', Validators.required],
@@ -38,6 +41,7 @@ export class ProcuraFretePage implements OnInit {
   carregaEstados() {
     this.estadoService.getEstados().subscribe(data => {
       this.estados = data;
+      this.estadosDestino = data
     });
   }
 
@@ -49,6 +53,17 @@ export class ProcuraFretePage implements OnInit {
     this.estadoService.getMunicipios(this.estado_origem.id).subscribe(data => {
       this.municipios = [];
       this.municipios = data;
+    });
+  }
+
+  onChangeDestino() {
+    this.carregaMunicipiosDestino();
+  }
+
+  carregaMunicipiosDestino() {
+    this.estadoService.getMunicipios(this.estado_destino.id).subscribe(data => {
+      this.municipiosDestino = [];
+      this.municipiosDestino = data;
     });
   }
 

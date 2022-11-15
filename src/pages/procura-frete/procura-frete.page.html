@@ -15,19 +15,22 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col col-6>
+          <ion-col col-12>
             <ion-item>
-              <ion-select placeholder="Origem Estado" formControlName="estado_origem" (ionChange)="onChange();"
-                [(ngModel)]="estado_origem">
+              <ion-label>Origem Estado</ion-label>
+              <ion-select formControlName="estado_origem" (ionChange)="onChange();" [(ngModel)]="estado_origem">
                 <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
-          <ion-col col-6>
-            <ion-select placeholder="Origem Cidade" formControlName="cidade_origem" [(ngModel)]="cidade_origem">
-              <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
-              </ion-select-option>
-            </ion-select>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label>Origem Cidade</ion-label>
+              <ion-select formControlName="cidade_origem" [(ngModel)]="cidade_origem">
+                <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -45,19 +48,24 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col col-6>
+          <ion-col>
             <ion-item>
-              <ion-select placeholder="Destino Estado" formControlName="estado_destino" (ionChange)="onChange();"
+              <ion-label>Destino Estado</ion-label>
+              <ion-select formControlName="estado_destino" (ionChange)="onChangeDestino();"
                 [(ngModel)]="estado_destino">
-                <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+                <ion-select-option *ngFor="let estado of estadosDestino" [value]="estado">{{estado.nome}}
+                </ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
-          <ion-col col-6>
-            <ion-select placeholder="Destino Cidade" formControlName="cidade_destino" [(ngModel)]="cidade_destino">
-              <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
-              </ion-select-option>
-            </ion-select>
+          <ion-col>
+            <ion-item>
+              <ion-label>Destino Cidade</ion-label>
+              <ion-select formControlName="cidade_destino" [(ngModel)]="cidade_destino">
+                <ion-select-option *ngFor="let municipio of municipiosDestino" [value]="municipio">{{municipio.nome}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
