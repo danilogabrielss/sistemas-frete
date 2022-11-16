@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+import { FiltroFreteTO } from 'src/model/FiltroFreteTO';
 import { FreteTO } from 'src/model/FreteTO';
 import { EstadoService } from 'src/services/estado.service';
 import { FreteService } from 'src/services/frete.service';
@@ -17,11 +18,14 @@ export class FreteListPage {
   listafrete: FreteTO[] = [];
   estados: any[] = [];
   municipios: any[] = [];
-  filtros: any;
+  filtro: FiltroFreteTO = new FiltroFreteTO();
+
   constructor(private dataService: DataService, private freteService: FreteService, private estadoService: EstadoService, private router: Router, private modalCtrl: ModalController) {
     this.getEstados();
     this.getFretes();
   }
+
+  ngOnInit() { }
 
   refresh(ev) {
     setTimeout(() => {
@@ -71,8 +75,14 @@ export class FreteListPage {
   async openModalFiltro() {
     const modal = await this.modalCtrl.create({
       component: FiltroFretePage,
+      componentProps: { 'filtro': this.filtro }
     });
     modal.present();
+
+    modal.onDidDismiss().then((data: any) => {
+      this.filtro = data.data.filtro;
+      //Fazer o filtro depois.
+    });
   }
 
 }

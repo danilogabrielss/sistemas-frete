@@ -14,8 +14,8 @@
         <ion-col col-12>
           <ion-item>
             <ion-label>Origem Estado</ion-label>
-            <ion-select formControlName="estado_origem" (ionChange)="onChange();" [(ngModel)]="estado_origem">
-              <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+            <ion-select formControlName="estado_origem" (ionChange)="onChange()" [(ngModel)]="estado_origem">
+              <ion-select-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -43,8 +43,8 @@
         <ion-col col-12>
           <ion-item>
             <ion-label>Destino Estado</ion-label>
-            <ion-select formControlName="estado_destino" (ionChange)="onChangeDestino();">
-              <ion-select-option *ngFor="let estado of estadosDestino" [value]="estado">{{estado.nome}}
+            <ion-select formControlName="estado_destino" (ionChange)="onChangeDestino();" [(ngModel)]="estado_destino">
+              <ion-select-option *ngFor="let estado of estadosDestino" [value]="estado.id">{{estado.nome}}
               </ion-select-option>
             </ion-select>
           </ion-item>
@@ -61,7 +61,7 @@
           <ion-item>
             <ion-label>Destino Cidade</ion-label>
             <ion-select formControlName="cidade_destino" (ionChange)="setMesoregiaoDestino();"
-              [disabled]="this.estado_destino == undefined">
+              [(ngModel)]="cidade_destino" [disabled]="this.estado_destino == undefined">
               <ion-select-option *ngFor="let municipio of municipiosDestino" [value]="municipio">{{municipio.nome}}
               </ion-select-option>
             </ion-select>
@@ -70,7 +70,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col col-6>
+        <ion-col col-12>
           <ion-item>
             <ion-label>Veículo</ion-label>
             <ion-select formControlName="veiculo">
@@ -80,8 +80,9 @@
             </ion-select>
           </ion-item>
         </ion-col>
-
-        <ion-col col-6>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
           <ion-item>
             <ion-label>Carroceria</ion-label>
             <ion-select formControlName="carroceria">

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FreteListPage } from './frete-list.page';
 //import { HomePageRoutingModule } from './home-routing.module';
@@ -21,6 +21,7 @@ const routes: Routes = [
     IonicModule,
     //HomePageRoutingModule,
     [RouterModule.forChild(routes)], 
+    ReactiveFormsModule
   ],
   declarations: [FreteListPage],
   exports: [RouterModule]  

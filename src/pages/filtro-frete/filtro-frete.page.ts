@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
+import { FiltroFreteTO } from 'src/model/FiltroFreteTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
 import { EstadoService } from 'src/services/estado.service';
 
@@ -24,6 +25,12 @@ export class FiltroFretePage implements OnInit {
   public cidade_origem: any = undefined;
   public estado_destino: any = undefined;
   public cidade_destino: any = undefined;
+  public veiculo: number = null;
+  public carroceria: number = null;
+  public rastreamento: boolean = null;
+  public agenciamento: boolean = null;
+
+  filtro: FiltroFreteTO;
 
   veiculos: VeiculoTO[] = [
     {
@@ -110,7 +117,7 @@ export class FiltroFretePage implements OnInit {
     }
   ];
 
-  constructor(private modalCtrl: ModalController, public fb: FormBuilder, private estadoService: EstadoService) { }
+  constructor(private modalCtrl: ModalController, public fb: FormBuilder, private estadoService: EstadoService, private navParams: NavParams) { }
 
   ngOnInit() {
     this.filtroFreteForm = this.fb.group({
@@ -122,9 +129,15 @@ export class FiltroFretePage implements OnInit {
       veiculo: [''],
       carroceria: [''],
       rastreamento: [''],
-
+      agenciamento: [''],
     });
     this.carregaEstados();
+    this.filtro = this.navParams.get('filtro');
+    console.log(this.filtro);
+    /*this.filtroFreteForm.get('estado_origem').setValue(this.filtro.estado_origem);
+    console.log('filtro.estado_origem - ' + this.filtro.estado_origem);
+    console.log(this.filtroFreteForm.controls);*/
+
   }
 
   voltarTelaFrete() {
@@ -132,8 +145,6 @@ export class FiltroFretePage implements OnInit {
   }
 
   carregaEstados() {
-    console.log('carregando');
-
     this.estadoService.getEstados().subscribe(data => {
       this.estados = data;
       this.estadosDestino = data
@@ -145,7 +156,7 @@ export class FiltroFretePage implements OnInit {
   }
 
   carregaMunicipios() {
-    this.estadoService.getMunicipios(this.estado_origem.id).subscribe(data => {
+    this.estadoService.getMunicipios(this.estado_origem).subscribe(data => {
       this.municipios = [];
       this.municipios = data;
     });
@@ -156,7 +167,7 @@ export class FiltroFretePage implements OnInit {
   }
 
   carregaMunicipiosDestino() {
-    this.estadoService.getMunicipios(this.estado_destino.id).subscribe(data => {
+    this.estadoService.getMunicipios(this.estado_destino).subscribe(data => {
       this.municipiosDestino = [];
       this.municipiosDestino = data;
     });
@@ -170,5 +181,9 @@ export class FiltroFretePage implements OnInit {
     document.getElementById('inputMesoRegDestitno').innerHTML = this.cidade_destino.microrregiao.mesorregiao.nome;
   }
 
+  filtrar() {
+    this.filtro = this.filtroFreteForm.getRawValue();
+    this.modalCtrl.dismiss({ 'filtro': this.filtro });
+  }
 
 }
