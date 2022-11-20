@@ -12,10 +12,6 @@ export class AppComponent {
     { title: 'Cadastro de Frete', url: '/frete-form', icon: 'add' },
     { title: 'Listagem de Frete', url: '/frete-list', icon: 'list' },
     { title: 'Procura Frete', url: '/procura-frete', icon: 'search' },
-
-    /*{ title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },*/
   ];
-  /*public labels = ['Tela inicial', 'Login para caminhoneiro', 'Cadastro de Frete'];*/
   constructor() { }
 }
