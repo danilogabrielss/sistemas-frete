@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FreteTO } from 'src/model/FreteTO';
-import { DataService, Message } from '../../services/data.service';
 
 @Component({
   selector: 'app-home',

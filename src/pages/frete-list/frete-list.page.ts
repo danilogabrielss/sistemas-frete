@@ -5,7 +5,6 @@ import { FiltroFreteTO } from 'src/model/FiltroFreteTO';
 import { FreteTO } from 'src/model/FreteTO';
 import { EstadoService } from 'src/services/estado.service';
 import { FreteService } from 'src/services/frete.service';
-import { DataService, Message } from '../../services/data.service';
 import { FiltroFretePage } from '../filtro-frete/filtro-frete.page';
 
 
@@ -20,7 +19,7 @@ export class FreteListPage {
   municipios: any[] = [];
   filtro: FiltroFreteTO = new FiltroFreteTO();
 
-  constructor(private dataService: DataService, private freteService: FreteService, private estadoService: EstadoService, private router: Router, private modalCtrl: ModalController) {
+  constructor(private freteService: FreteService, private estadoService: EstadoService, private router: Router, private modalCtrl: ModalController) {
     this.getEstados();
     this.getFretes();
   }
@@ -31,10 +30,6 @@ export class FreteListPage {
     setTimeout(() => {
       ev.detail.complete();
     }, 3000);
-  }
-
-  getMessages(): Message[] {
-    return this.dataService.getMessages();
   }
 
   getEstados() {
