@@ -6,7 +6,8 @@ import { EmpresaTO } from 'src/model/EmpresaTO';
   providedIn: 'root'
 })
 export class EmpresaService {
-  url = 'http://localhost:3030/empresas';
+  //url: string = 'http://localhost:3030/empresas';
+  url: string = 'https://tccfretes.herokuapp.com/empresas';
   constructor(private httpClient: HttpClient) { }
 
   getEmpresas() {

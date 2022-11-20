@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 @NgModule()
 
 export class VeiculoService {
-    private url: string = 'http://localhost:3030/';
-
+    //url: string = 'http://localhost:3030/';
+    url: string = 'https://tccfretes.herokuapp.com/';
     constructor(private httpClient: HttpClient) { }
 
     getVeiculo(): Observable<any> {

@@ -6,7 +6,9 @@ import { FreteTO } from 'src/model/FreteTO';
   providedIn: 'root'
 })
 export class FreteService {
-  url = 'http://localhost:3030/fretes';
+  //url: string = 'http://localhost:3030/fretes';
+  url: string = 'https://tccfretes.herokuapp.com/fretes';
+
   constructor(private httpClient: HttpClient) { }
 
   getFretes() {

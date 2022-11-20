@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProcuraFreteService {
-  url = 'http://localhost:3030/procura_fretes';
+  //url: string = 'http://localhost:3030/procura_fretes';
+  url: string = 'https://tccfretes.herokuapp.com/procura_fretes';
   constructor(private httpClient: HttpClient) { }
 
   getProcuraFrete() {
