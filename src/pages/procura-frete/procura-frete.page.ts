@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EstadoService } from 'src/services/estado.service';
-import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   selector: 'app-procura-frete',
-  templateUrl: './procura-frete.page.html',
-  styleUrls: ['./procura-frete.page.scss'],
+  templateUrl: 'procura-frete.page.html',
+  styleUrls: ['procura-frete.page.scss'],
 })
 export class ProcuraFretePage implements OnInit {
 
