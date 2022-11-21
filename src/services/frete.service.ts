@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FiltroFreteTO } from 'src/model/FiltroFreteTO';
 import { FreteTO } from 'src/model/FreteTO';
 
 @Injectable({
