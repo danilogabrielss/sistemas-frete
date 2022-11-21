@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { IonSpinner, LoadingController, NavController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { EmpresaTO } from 'src/model/EmpresaTO';
 import { FreteTO } from 'src/model/FreteTO';
 import { EmpresaService } from 'src/services/empresa.service';
-import { EstadoService } from 'src/services/estado.service';
 import { FreteService } from 'src/services/frete.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class FreteDetailPage implements OnInit {
   empresa: EmpresaTO;
 
   constructor(private router: ActivatedRoute,
-    private estadoService: EstadoService, private freteService: FreteService, private navCtrl: NavController, private empresaService: EmpresaService) {
+    private freteService: FreteService, private navCtrl: NavController, private empresaService: EmpresaService, private loadingController: LoadingController) {
     this.router.params.subscribe((params: any) => {
       this.idFrete = params.id;
       this.carregaFrete();
@@ -28,24 +27,19 @@ export class FreteDetailPage implements OnInit {
   }
   ngOnInit() { }
 
-  carregaFrete() {
-    this.freteService.getFreteByid(this.idFrete).subscribe((data: any) => {
+  async carregaFrete() {
+    this.freteService.getFreteByid(this.idFrete).subscribe(async (data: any) => {
+      console.log(data);
+      var loading = this.loadingController.create({
+        message: 'Carregando'
+      });
+      (await loading).present();
       this.frete = data;
       forkJoin({
-        req1: this.estadoService.getMunicipioById(this.frete.cidade_origem),
-        req2: this.estadoService.getMunicipioById(this.frete.cidade_destino),
-        req3: this.estadoService.getEstadoById(this.frete.estado_origem),
-        req4: this.estadoService.getEstadoById(this.frete.estado_destino),
-        req5: this.empresaService.getEmpresasByid(this.frete.empresaId),
+        req1: this.empresaService.getEmpresasByid(this.frete.empresaId),
       }).subscribe(res => {
-        console.log(res);
-        this.frete.ds_cidade_origem = res.req1.nome;
-        this.frete.ds_cidade_destino = res.req2.nome;
-        this.frete.ds_estado_origem = res.req3.sigla;
-        this.frete.ds_estado_destino = res.req4.sigla;
-
-        document.getElementById('lblOrigem').innerHTML = this.frete.ds_cidade_origem + '/' + this.frete.ds_estado_origem;
-        document.getElementById('lblDestino').innerHTML = this.frete.ds_cidade_destino + '/' + this.frete.ds_estado_destino;
+        document.getElementById('lblOrigem').innerHTML = this.frete.nm_cidade_origem + '/' + this.frete.sg_estado_origem;
+        document.getElementById('lblDestino').innerHTML = this.frete.nm_cidade_destino + '/' + this.frete.sg_estado_destino;
         document.getElementById('lblDescricao').innerHTML = this.frete.descricao;
         document.getElementById('lblProduto').innerHTML = this.frete.produto;
         document.getElementById('lblPreco').innerHTML = 'R$' + this.frete.preco;
@@ -55,7 +49,7 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblPeso').innerHTML = this.frete.peso + 'kgs';
         document.getElementById('lblEspecie').innerHTML = this.frete.tipo_carga;
 
-        var empresa = res.req5;
+        var empresa = res.req1;
         var contatos: string;
         if (empresa.Contatos_empresa.lenght > 1)
           empresa.Contatos_empresa.forEach(contato => {
@@ -69,7 +63,7 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblNmEmpresa').innerHTML = this.empresa.nome;
         document.getElementById('lblContatoEmpresa').innerHTML = contatos;
       });
-
+      (await loading).dismiss();
     });
   }
 

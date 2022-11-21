@@ -19,8 +19,7 @@ export class FreteListPage {
   municipios: any[] = [];
   filtro: FiltroFreteTO = new FiltroFreteTO();
 
-  constructor(private freteService: FreteService, private estadoService: EstadoService, private router: Router, private modalCtrl: ModalController) {
-    this.getEstados();
+  constructor(private freteService: FreteService, private router: Router, private modalCtrl: ModalController) {
     this.getFretes();
   }
 
@@ -32,34 +31,11 @@ export class FreteListPage {
     }, 3000);
   }
 
-  getEstados() {
-    this.estadoService.getEstados().subscribe(data => this.estados = data);
-  }
-
   getFretes() {
     this.freteService.getFretes().subscribe((data: any) => {
+      console.log(data.fretes);
       this.listafrete = data.fretes;
-      this.listafrete.forEach(frete => {
-        //frete.data_postagem = new Date(frete.data_postagem.toISOString());
-        this.estados.forEach(estado => {
-          if (frete.estado_origem == estado.id) {
-            frete.ds_estado_origem = estado.sigla;
-          }
-          if (frete.estado_destino == estado.id) {
-            frete.ds_estado_destino = estado.sigla;
-          }
-        });
-        this.estadoService.getMunicipios(frete.estado_origem).subscribe(data => {
-          data.forEach(municipio => {
-            if (municipio.id == frete.cidade_origem) {
-              frete.ds_cidade_origem = municipio.nome;
-            }
-            if (municipio.id == frete.cidade_destino) {
-              frete.ds_cidade_destino = municipio.nome;
-            }
-          });
-        });
-      });
+      //frete.data_postagem = new Date(frete.data_postagem.toISOString());
     });
   }
 
