@@ -68,6 +68,8 @@ export class FreteListPage {
   }
 
   async openModalFiltro() {
+    console.log(this.listafrete);
+
     const modal = await this.modalCtrl.create({
       component: FiltroFretePage,
       componentProps: { 'filtro': this.filtro }
@@ -76,7 +78,13 @@ export class FreteListPage {
 
     modal.onDidDismiss().then((data: any) => {
       this.filtro = data.data.filtro;
+      console.log(this.filtro);
       //Fazer o filtro depois.
+      /*this.freteService.filtroFrete(this.filtro).subscribe((retorno: FreteTO[]) => {
+        this.listafrete = [];
+        console.log(retorno);
+        this.listafrete = retorno;
+      })*/
     });
   }
 
