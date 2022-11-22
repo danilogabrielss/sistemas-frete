@@ -101,6 +101,7 @@ export class ProcuraFretePage implements OnInit {
     this.procuraFreteForm.get('data_inicio').setValue(date, {
       onlyself: true
     });
+    this.data_inicio = e.detail.value.substring(0, 10);
   }
 
 }
