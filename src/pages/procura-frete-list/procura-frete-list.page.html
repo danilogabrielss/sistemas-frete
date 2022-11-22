@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Listagem de Caminhoneiros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let caminhoneiro of procuraFretes;" lines="full" class="ion-text-wrap">
+    <ion-item>
+      <ion-label>
+        <h2 margin>
+          {{ caminhoneiro.cidade_origem }} / {{ caminhoneiro.estado_origem}} para
+          {{ caminhoneiro.cidade_destino }} / {{caminhoneiro.estado_destino}}
+        </h2>
+      </ion-label>
+      <ion-button (click)="openCaminhoneiroDetalhe(frete)">
+        Detalhes
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

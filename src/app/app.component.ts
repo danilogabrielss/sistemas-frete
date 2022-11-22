@@ -12,6 +12,7 @@ export class AppComponent {
     { title: 'Cadastro de Frete', url: '/frete-form', icon: 'add' },
     { title: 'Listagem de Frete', url: '/frete-list', icon: 'list' },
     { title: 'Procura Frete', url: '/procura-frete', icon: 'search' },
+    { title: 'Listagem de Caminhoneiros', url: '/procura-frete-list', icon: 'list' },
   ];
   constructor() { }
 }

@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'filtro-frete',
     loadChildren: () => import('../pages/filtro-frete/filtro-frete.module').then( m => m.FiltroFretePageModule)
+  },
+  {
+    path: 'procura-frete-list',
+    loadChildren: () => import('../pages/procura-frete-list/procura-frete-list.module').then( m => m.ProcuraFreteListPageModule)
   }
 
 
