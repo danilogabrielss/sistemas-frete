@@ -17,6 +17,17 @@
       <ion-row>
         <ion-col col-12>
           <ion-item>
+            <ion-label>CPF</ion-label>
+            <ion-select formControlName="cpf">
+              <ion-select-option *ngFor="let caminhoneiro of caminhoneiros" [value]="caminhoneiro.cpf">
+                {{caminhoneiro.cpf}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
             <ion-label>Origem Estado</ion-label>
             <ion-select formControlName="estado_origem" (ionChange)="onChange();" [(ngModel)]="estado_origem">
               <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>

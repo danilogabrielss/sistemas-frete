@@ -8,10 +8,10 @@ export class ProcuraFreteTO {
     ds_estado_origem: string = '';
     estado_destino: string;
     ds_estado_destino: string = '';
-
-    ativo: boolean;
+    data_inicio: any
+    /*ativo: boolean;
     agenciamento: boolean;
     rastreamento: boolean;
-    pedagio: boolean;
+    pedagio: boolean;*/
 
 }

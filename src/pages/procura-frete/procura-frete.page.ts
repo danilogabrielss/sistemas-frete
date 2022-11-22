@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CaminhoneiroService } from 'src/services/caminhoneiro.service';
 import { EstadoService } from 'src/services/estado.service';
+import { ProcuraFreteService } from 'src/services/procura-frete.service';
 
 @Component({
   selector: 'app-procura-frete',
@@ -14,6 +16,7 @@ export class ProcuraFretePage implements OnInit {
 
   public estados: any[] = [];
   public municipios: any[] = [];
+  public caminhoneiros: any[] = [];
 
   public estadosDestino: any[] = [];
   public municipiosDestino: any[] = [];
@@ -24,10 +27,12 @@ export class ProcuraFretePage implements OnInit {
   public cidade_destino: any = undefined;
   public data_inicio = undefined;
 
-  constructor(public fb: FormBuilder, private estadoService: EstadoService) { }
+  constructor(public fb: FormBuilder, private estadoService: EstadoService, private procuraFreteService: ProcuraFreteService,
+    private caminhoneiroService: CaminhoneiroService) { }
 
   ngOnInit() {
     this.procuraFreteForm = this.fb.group({
+      cpf: [''],
       estado_origem: ['', Validators.required],
       cidade_origem: ['', Validators.required],
       data_inicio: ['', Validators.required],
@@ -35,12 +40,19 @@ export class ProcuraFretePage implements OnInit {
       cidade_destino: ['', Validators.required],
     });
     this.carregaEstados();
+    this.carregaCaminhoneiro();
   }
 
   carregaEstados() {
     this.estadoService.getEstados().subscribe(data => {
       this.estados = data;
       this.estadosDestino = data
+    });
+  }
+
+  carregaCaminhoneiro() {
+    this.caminhoneiroService.getCaminhoneiro().subscribe(data => {
+      this.caminhoneiros = data;
     });
   }
 
@@ -67,7 +79,21 @@ export class ProcuraFretePage implements OnInit {
   }
 
   salvarProcuraFrete() {
-    console.log(this.procuraFreteForm.controls);
+    var params = {
+      cpf: this.procuraFreteForm.get('cpf').value,
+      estado_origem: this.estado_origem,
+      cidade_origem: this.cidade_origem,
+      data_inicio: this.data_inicio,
+      estado_destino: this.estado_destino,
+      cidade_destino: this.cidade_destino
+    }
+    console.log(params);
+
+    this.procuraFreteService.postProcuraFrete(params).subscribe((data: any) => {
+      if (data.status == 200) {
+        alert.call('Sucess');
+      }
+    });
   }
 
   getDate(e) {
