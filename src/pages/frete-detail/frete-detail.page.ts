@@ -42,7 +42,12 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblDestino').innerHTML = this.frete.nm_cidade_destino + '/' + this.frete.sg_estado_destino;
         document.getElementById('lblDescricao').innerHTML = this.frete.descricao;
         document.getElementById('lblProduto').innerHTML = this.frete.produto;
-        document.getElementById('lblPreco').innerHTML = 'R$' + this.frete.preco;
+        if (this.frete.preco != 'A COMBINAR') {
+          document.getElementById('lblPreco').innerHTML = 'R$' + this.frete.preco;
+        }
+        else {
+          document.getElementById('lblPreco').innerHTML = this.frete.preco;
+        }
         document.getElementById('lblRastreado').innerHTML = this.frete.rastreamento == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
         document.getElementById('lblAgenciado').innerHTML = this.frete.agenciamento == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
         document.getElementById('lblLona').innerHTML = this.frete.lona == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
