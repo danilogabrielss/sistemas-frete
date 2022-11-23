@@ -20,12 +20,14 @@
     <ion-item>
       <ion-label>
         <h2 margin>
-          {{ frete.nm_cidade_origem }} / {{ frete.sg_estado_origem}} para
+          {{ frete.nm_cidade_origem }} / {{ frete.sg_estado_origem}}
+          <br>
           {{ frete.nm_cidade_destino }} / {{frete.sg_estado_destino}}
           <br>
-          Preço: {{frete.preco}} &nbsp;&nbsp; Produto: {{frete.produto}}
+          Preço: {{frete.preco}}
+          <br>
+          Produto: {{frete.produto}}
         </h2>
-        <!--Data da Postagem: {{ frete.data_postagem }}-->
       </ion-label>
       <ion-button (click)="openFreteDetalhe(frete)">
         Detalhes
