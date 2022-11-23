@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ProcuraFreteTO } from 'src/model/ProcuraFreteTO';
 import { ProcuraFreteService } from 'src/services/procura-frete.service';
+import { CaminhoneiroFormPage } from '../caminhoneiro-form/caminhoneiro-form.page';
 
 @Component({
   selector: 'app-procura-frete-list',
@@ -26,17 +27,16 @@ export class ProcuraFreteListPage implements OnInit {
     });
   }
 
-  async openCaminhoneiroDetalhe(procuraFrete: ProcuraFreteTO) {
-    console.log(procuraFrete);
+  async openCaminhoneiroDetalhe(caminhoneiro: any) {
+    console.log(caminhoneiro);
 
-    /*const modal = await this.modalCtrl.create({
-      component: CaminhoneiroPage,
-      componentProps: { 'filtro': this.filtro }
+    const modal = await this.modalCtrl.create({
+      component: CaminhoneiroFormPage,
+      componentProps: { 'caminhoneiro': caminhoneiro }
     });
     modal.present();
 
-    modal.onDidDismiss().then((data: any) => {      
-    });*/
+    modal.onDidDismiss().then((data: any) => { });
   }
 
 }

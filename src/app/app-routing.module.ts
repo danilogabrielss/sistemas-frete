@@ -34,11 +34,15 @@ const routes: Routes = [
   },
   {
     path: 'filtro-frete',
-    loadChildren: () => import('../pages/filtro-frete/filtro-frete.module').then( m => m.FiltroFretePageModule)
+    loadChildren: () => import('../pages/filtro-frete/filtro-frete.module').then(m => m.FiltroFretePageModule)
   },
   {
     path: 'procura-frete-list',
-    loadChildren: () => import('../pages/procura-frete-list/procura-frete-list.module').then( m => m.ProcuraFreteListPageModule)
+    loadChildren: () => import('../pages/procura-frete-list/procura-frete-list.module').then(m => m.ProcuraFreteListPageModule)
+  },
+  {
+    path: 'caminhoneiro-form',
+    loadChildren: () => import('../pages/caminhoneiro-form/caminhoneiro-form.module').then(m => m.CaminhoneiroFormPageModule)
   }
 
 

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Listagem de Caminhoneiros</ion-title>
+    <ion-title>Listagem de caminhoneiros procurando fretes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
           {{ caminhoneiro.cidade_destino }} / {{caminhoneiro.estado_destino}}
         </h2>
       </ion-label>
-      <ion-button (click)="openCaminhoneiroDetalhe(frete)">
+      <ion-button (click)="openCaminhoneiroDetalhe(caminhoneiro.caminhoneiro)">
         Detalhes
       </ion-button>
     </ion-item>

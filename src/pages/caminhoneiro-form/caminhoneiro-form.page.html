@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button *ngIf="cpf == null"></ion-menu-button>
+      <ion-icon *ngIf="cpf != null" size="large" name="chevron-back-outline" (click)="back()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Cadastro de Caminhoneiro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1 *ngIf="this.cpf == null">Insira seus dados</h1>
+  <form action="" [formGroup]="caminhoneiroForm">
+    <ion-grid>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>CPF</ion-label>
+          <ion-input formControlName="cpf" id="cpf" type="number" [disabled]="this.cpf != null">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input formControlName="nome" id="nome" [disabled]="this.cpf != null">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input formControlName="email" id="email" type="email" [disabled]="this.cpf != null">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12 *ngIf="cpf == null">
+        <ion-item>
+          <ion-label>Senha</ion-label>
+          <ion-input formControlName="senha" id="senha" type="password" value="password" [disabled]="this.cpf != null">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Celular</ion-label>
+          <ion-input formControlName="celular" id="celular" type="number" [disabled]="this.cpf != null">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Notificação</ion-label>
+          <ion-checkbox slot="end" formControlName="notificacao" [disabled]="this.cpf != null"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Veículo</ion-label>
+          <ion-select formControlName="veiculoId" [disabled]="this.cpf != null">
+            <ion-select-option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{veiculo.veiculo}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Carroceria</ion-label>
+          <ion-select formControlName="carroceriaId" [disabled]="this.cpf != null">
+            <ion-select-option *ngFor="let carroceria of carrocerias" [value]="carroceria.id">
+              {{carroceria.carroceria}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-button (click)="postCaminhoneiro()" *ngIf="cpf == null">
+        Efetuar cadastro
+      </ion-button>
+    </ion-grid>
+  </form>
+</ion-content>
