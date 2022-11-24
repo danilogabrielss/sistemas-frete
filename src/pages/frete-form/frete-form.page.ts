@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
 import { EmpresaTO } from 'src/model/EmpresaTO';
 import { FreteTO } from 'src/model/FreteTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
 import { EmpresaService } from 'src/services/empresa.service';
 import { EstadoService } from 'src/services/estado.service';
+import { FreteService } from 'src/services/frete.service';
 
 
 @Component({
@@ -151,7 +153,8 @@ export class FreteFormPage implements OnInit {
   public estadoDestinoSelecionado: any = undefined;
   public cidadeDestinoSelecionada: any = undefined;
   constructor(private fb: FormBuilder,
-    private estadoService: EstadoService, private empresaService: EmpresaService) { }
+    private estadoService: EstadoService, private empresaService: EmpresaService,
+    private freteService: FreteService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.formFrete = this.fb.group({
@@ -213,7 +216,17 @@ export class FreteFormPage implements OnInit {
     params.estado_destino = this.formFrete.get('estado_destino').value.id;
     params.cidade_destino = this.formFrete.get('cidade_destino').value.id;
     console.log(params);
+    this.freteService.postFrete(params).subscribe((data: any) => {
+      this.alerta(data);
+    });
+  }
 
+  async alerta(mensagem) {
+    var alert = await this.alertCtrl.create({
+      message: mensagem,
+      buttons: ['Ok'],
+    });
+    alert.present();
   }
 
 }
