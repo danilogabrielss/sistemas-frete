@@ -1,4 +1,4 @@
 export class VeiculoTO{
-    id: string
+    id: number
     veiculo: string
 }

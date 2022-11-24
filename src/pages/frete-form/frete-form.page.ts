@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
+import { EmpresaService } from 'src/services/empresa.service';
 import { EstadoService } from 'src/services/estado.service';
 import { VeiculoService } from 'src/services/veiculo.service';
 
@@ -14,89 +15,88 @@ export class FreteFormPage implements OnInit {
 
   veiculos: VeiculoTO[] = [
     {
-      id: '0',
-      veiculo: "Rodotrem"
+      id: 9,
+      veiculo: "3/4"
     },
     {
-      id: '1',
-      veiculo: "Bitrem"
+      "id": 2,
+      "veiculo": "Bitrem"
     },
     {
-      id: '2',
-      "veiculo": "Vanderleia"
-    },
-    {
-      id: '3',
-      "veiculo": "Carreta LS"
-    },
-    {
-      id: '4',
-      "veiculo": "Carreta"
-    },
-    {
-      id: '5',
+      "id": 6,
       "veiculo": "Bitruck"
     },
     {
-      id: '6',
-      "veiculo": "Truck"
+      "id": 5,
+      "veiculo": "Carreta"
     },
     {
-      id: '7',
+      "id": 4,
+      "veiculo": "Carreta LS"
+    },
+    {
+      "id": 11,
+      "veiculo": "Fiorino"
+    },
+    {
+      "id": 1,
+      "veiculo": "Rodotrem"
+    },
+    {
+      "id": 8,
       "veiculo": "Toco"
     },
     {
-      id: '8',
-      "veiculo": "3/4"
+      "id": 7,
+      "veiculo": "Truck"
     },
     {
-      id: '9',
+      "id": 3,
+      "veiculo": "Vanderleia"
+    },
+    {
+      "id": 10,
       "veiculo": "VLC"
-    },
-    {
-      id: '10',
-      "veiculo": "Fiorino"
     }
   ];
-  carrocerias: CarroceriaTO[] =
-    [
-      {
-        id: 9,
-        "carroceria": "Apenas Cavalo"
-      },
-      {
-        id: 1,
-        "carroceria": "Baú"
-      },
-      {
-        id: 2,
-        "carroceria": "Baú Frigorífico"
-      },
-      {
-        id: 4,
-        "carroceria": "Caçamba"
-      },
-      {
-        id: 5,
-        "carroceria": "Grade Baixa"
-      },
-      {
-        id: 6,
-        "carroceria": "Graneleiro"
-      },
-      {
-        id: 8,
-        "carroceria": "Porta Container"
-      },
-      {
-        id: 7,
-        "carroceria": "Prancha"
-      },
-      {
-        id: 3,
-        "carroceria": "Sider"
-      }
-    ]
+  carrocerias: CarroceriaTO[] = [
+    {
+      id: 9,
+      "carroceria": "Apenas Cavalo"
+    },
+    {
+      id: 1,
+      "carroceria": "Baú"
+    },
+    {
+      id: 2,
+      "carroceria": "Baú Frigorífico"
+    },
+    {
+      id: 4,
+      "carroceria": "Caçamba"
+    },
+    {
+      id: 5,
+      "carroceria": "Grade Baixa"
+    },
+    {
+      id: 6,
+      "carroceria": "Graneleiro"
+    },
+    {
+      id: 8,
+      "carroceria": "Porta Container"
+    },
+    {
+      id: 7,
+      "carroceria": "Prancha"
+    },
+    {
+      id: 3,
+      "carroceria": "Sider"
+    }
+  ]
   public estados: any[] = [];
   public municipios: any[] = [];
 
@@ -109,7 +109,7 @@ export class FreteFormPage implements OnInit {
   public estadoDestinoSelecionado: any = undefined;
   public cidadeDestinoSelecionada: any = undefined;
   constructor(private veiculoService: VeiculoService,
-    private estadoService: EstadoService) { }
+    private estadoService: EstadoService, private empresaService: EmpresaService) { }
 
   ngOnInit() {
     this.carregaEstados();

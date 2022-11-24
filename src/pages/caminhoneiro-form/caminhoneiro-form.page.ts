@@ -19,48 +19,48 @@ export class CaminhoneiroFormPage implements OnInit {
 
   veiculos: VeiculoTO[] = [
     {
-      id: '0',
-      veiculo: "Rodotrem"
-    },
-    {
-      id: '1',
-      veiculo: "Bitrem"
-    },
-    {
-      id: '2',
-      "veiculo": "Vanderleia"
-    },
-    {
-      id: '3',
-      "veiculo": "Carreta LS"
-    },
-    {
-      id: '4',
-      "veiculo": "Carreta"
-    },
-    {
-      id: '5',
-      "veiculo": "Bitruck"
-    },
-    {
-      id: '6',
-      "veiculo": "Truck"
-    },
-    {
-      id: '7',
-      "veiculo": "Toco"
-    },
-    {
-      id: '8',
+      "id": 9,
       "veiculo": "3/4"
     },
     {
-      id: '9',
-      "veiculo": "VLC"
+      "id": 2,
+      "veiculo": "Bitrem"
     },
     {
-      id: '10',
+      "id": 6,
+      "veiculo": "Bitruck"
+    },
+    {
+      "id": 5,
+      "veiculo": "Carreta"
+    },
+    {
+      "id": 4,
+      "veiculo": "Carreta LS"
+    },
+    {
+      "id": 11,
       "veiculo": "Fiorino"
+    },
+    {
+      "id": 1,
+      "veiculo": "Rodotrem"
+    },
+    {
+      "id": 8,
+      "veiculo": "Toco"
+    },
+    {
+      "id": 7,
+      "veiculo": "Truck"
+    },
+    {
+      "id": 3,
+      "veiculo": "Vanderleia"
+    },
+    {
+      "id": 10,
+      "veiculo": "VLC"
     }
   ];
   carrocerias: CarroceriaTO[] = [
