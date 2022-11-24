@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
 import { EmpresaTO } from 'src/model/EmpresaTO';
+import { FreteTO } from 'src/model/FreteTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
 import { EmpresaService } from 'src/services/empresa.service';
 import { EstadoService } from 'src/services/estado.service';
@@ -155,10 +156,10 @@ export class FreteFormPage implements OnInit {
   ngOnInit() {
     this.formFrete = this.fb.group({
       empresa: ['', Validators.required],
-      estadoSelecionado: ['', Validators.required],
-      cidadeSelecionada: ['', Validators.required],
-      estadoDestinoSelecionado: ['', Validators.required],
-      cidadeDestinoSelecionada: ['', Validators.required],
+      estado_origem: ['', Validators.required],
+      cidade_origem: ['', Validators.required],
+      estado_destino: ['', Validators.required],
+      cidade_destino: ['', Validators.required],
       veiculo: ['', Validators.required],
       carroceria: ['', Validators.required],
       preco: [''],
@@ -201,7 +202,18 @@ export class FreteFormPage implements OnInit {
   }
 
   cadastrar() {
-    console.log(this.formFrete.getRawValue());
+    var params: FreteTO = this.formFrete.getRawValue();
+    params.sg_estado_origem = this.formFrete.get('estado_origem').value.nome;
+    params.nm_cidade_origem = this.formFrete.get('cidade_origem').value.nome;
+    params.sg_estado_destino = this.formFrete.get('estado_destino').value.nome;
+    params.nm_cidade_destino = this.formFrete.get('cidade_destino').value.nome;
+
+    params.estado_origem = this.formFrete.get('estado_origem').value.id;
+    params.cidade_origem = this.formFrete.get('cidade_origem').value.id;
+    params.estado_destino = this.formFrete.get('estado_destino').value.id;
+    params.cidade_destino = this.formFrete.get('cidade_destino').value.id;
+    console.log(params);
+
   }
 
 }

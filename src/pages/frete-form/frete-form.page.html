@@ -24,13 +24,13 @@
       <ion-col col-12>
         <ion-item>
           <ion-select placeholder="Origem Estado" (ionChange)="onChange();" [(ngModel)]="estadoSelecionado"
-            formControlName="estadoSelecionado">
+            formControlName="estado_origem">
             <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col col-12>
-        <ion-select placeholder="Origem Cidade" [(ngModel)]="cidadeSelecionada" formControlName="cidadeSelecionada">
+        <ion-select placeholder="Origem Cidade" [(ngModel)]="cidadeSelecionada" formControlName="cidade_origem">
           <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
           </ion-select-option>
         </ion-select>
@@ -39,14 +39,14 @@
       <ion-col col-12>
         <ion-item>
           <ion-select placeholder="Destino Estado" (ionChange)="onChangeDestino();"
-            [(ngModel)]="estadoDestinoSelecionado" formControlName="estadoDestinoSelecionado">
+            [(ngModel)]="estadoDestinoSelecionado" formControlName="estado_destino">
             <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col col-12>
         <ion-select placeholder="Destino Cidade" [(ngModel)]="cidadeDestinoSelecionada"
-          formControlName="cidadeDestinoSelecionada">
+          formControlName="cidade_destino">
           <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
           </ion-select-option>
         </ion-select>
