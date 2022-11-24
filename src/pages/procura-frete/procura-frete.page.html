@@ -20,7 +20,7 @@
             <ion-label>CPF</ion-label>
             <ion-select formControlName="cpf">
               <ion-select-option *ngFor="let caminhoneiro of caminhoneiros" [value]="caminhoneiro.cpf">
-                {{caminhoneiro.cpf}}</ion-select-option>
+                {{caminhoneiro.nome}} - {{caminhoneiro.celular}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>

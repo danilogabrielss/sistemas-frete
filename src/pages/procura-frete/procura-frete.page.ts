@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CaminhoneiroTO } from 'src/model/CaminhoneiroTO';
 import { CaminhoneiroService } from 'src/services/caminhoneiro.service';
 import { EstadoService } from 'src/services/estado.service';
 import { ProcuraFreteService } from 'src/services/procura-frete.service';
@@ -16,7 +17,7 @@ export class ProcuraFretePage implements OnInit {
 
   public estados: any[] = [];
   public municipios: any[] = [];
-  public caminhoneiros: any[] = [];
+  public caminhoneiros: CaminhoneiroTO[] = [];
 
   public estadosDestino: any[] = [];
   public municipiosDestino: any[] = [];
