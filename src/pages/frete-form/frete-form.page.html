@@ -9,65 +9,137 @@
 
 <ion-content class="ion-padding">
   <h1>Insira seus dados</h1>
-  <form action="">
+  <form [formGroup]="formFrete">
     <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-          <ion-item>
-            <ion-select placeholder="Origem Estado" (ionChange)="onChange();" [(ngModel)]="estadoSelecionado"
-              name="estadoSelecionado">
-              <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-select placeholder="Origem Cidade" [(ngModel)]="cidadeSelecionada" name="cidadeSelecionada">
-            <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-select placeholder="Empresa" formControlName="empresa">
+            <ion-select-option *ngFor="let empresa of empresas" [value]="empresa.id">{{empresa.nome}}
             </ion-select-option>
           </ion-select>
-        </ion-col>
-      </ion-row>
+        </ion-item>
+      </ion-col>
 
-      <ion-row>
-        <ion-col col-6>
-          <ion-item>
-            <ion-select placeholder="Destino Estado" (ionChange)="onChangeDestino();"
-              [(ngModel)]="estadoDestinoSelecionado" name="estadoDestinoSelecionado">
-              <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-select placeholder="Destino Cidade" [(ngModel)]="cidadeDestinoSelecionada"
-            name="cidadeDestinoSelecionada">
-            <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+      <ion-col col-12>
+        <ion-item>
+          <ion-select placeholder="Origem Estado" (ionChange)="onChange();" [(ngModel)]="estadoSelecionado"
+            formControlName="estadoSelecionado">
+            <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <ion-select placeholder="Origem Cidade" [(ngModel)]="cidadeSelecionada" formControlName="cidadeSelecionada">
+          <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-select placeholder="Destino Estado" (ionChange)="onChangeDestino();"
+            [(ngModel)]="estadoDestinoSelecionado" formControlName="estadoDestinoSelecionado">
+            <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <ion-select placeholder="Destino Cidade" [(ngModel)]="cidadeDestinoSelecionada"
+          formControlName="cidadeDestinoSelecionada">
+          <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Veículo</ion-label>
+          <ion-select formControlName="veiculo" [multiple]="true">
+            <ion-select-option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{veiculo.veiculo}}
             </ion-select-option>
           </ion-select>
-        </ion-col>
-      </ion-row>
+        </ion-item>
+      </ion-col>
 
-      <ion-row>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>Veículo</ion-label>
-            <ion-select>
-              <ion-select-option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{veiculo.veiculo}}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Carroceria</ion-label>
+          <ion-select formControlName="carroceria" [multiple]="true">
+            <ion-select-option *ngFor="let carroceria of carrocerias" [value]="carroceria.id">
+              {{carroceria.carroceria}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
 
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>Carroceria</ion-label>
-            <ion-select>
-              <ion-select-option *ngFor="let carroceria of carrocerias" [value]="carroceria.id">
-                {{carroceria.carroceria}}
-              </ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Preço</ion-label>
+          <ion-input formControlName="preco" type="number">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Peso (em kgs)</ion-label>
+          <ion-input formControlName="peso" type="number">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Produto</ion-label>
+          <ion-input formControlName="produto">
+          </ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Espécie</ion-label>
+          <ion-select formControlName="especie">
+            <ion-select-option *ngFor="let especie of especies" [value]="especie.id">
+              {{especie.especie}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Rastreamento</ion-label>
+          <ion-checkbox slot="end" formControlName="rastreamento"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Agenciamento</ion-label>
+          <ion-checkbox slot="end" formControlName="agenciamento"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Lona</ion-label>
+          <ion-checkbox slot="end" formControlName="lona"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label floating>Descrição</ion-label>
+          <ion-textarea formControlName="descricao" type="string"></ion-textarea>
+        </ion-item>
+      </ion-col>
+
+      <ion-button (click)="cadastrar()">
+        Cadastrar Frete
+      </ion-button>
+
     </ion-grid>
   </form>
 </ion-content>

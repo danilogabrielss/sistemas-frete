@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
+import { EmpresaTO } from 'src/model/EmpresaTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
 import { EmpresaService } from 'src/services/empresa.service';
 import { EstadoService } from 'src/services/estado.service';
-import { VeiculoService } from 'src/services/veiculo.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { VeiculoService } from 'src/services/veiculo.service';
 })
 export class FreteFormPage implements OnInit {
 
+  formFrete: FormGroup;
   veiculos: VeiculoTO[] = [
     {
       id: 9,
@@ -97,6 +99,45 @@ export class FreteFormPage implements OnInit {
       "carroceria": "Sider"
     }
   ]
+  especies: any[] = [
+    {
+      "id": 5,
+      "especie": "Big Bag"
+    },
+    {
+      "id": 8,
+      "especie": "Caixas"
+    },
+    {
+      "id": 3,
+      "especie": "Container"
+    },
+    {
+      "id": 1,
+      "especie": "Diversos"
+    },
+    {
+      "id": 4,
+      "especie": "Fardos"
+    },
+    {
+      "id": 6,
+      "especie": "Grãos"
+    },
+    {
+      "id": 2,
+      "especie": "Paletes"
+    },
+    {
+      "id": 9,
+      "especie": "Sacos"
+    },
+    {
+      "id": 7,
+      "especie": "Unidades"
+    }
+  ]
+  empresas: EmpresaTO[] = [];
   public estados: any[] = [];
   public municipios: any[] = [];
 
@@ -108,16 +149,34 @@ export class FreteFormPage implements OnInit {
 
   public estadoDestinoSelecionado: any = undefined;
   public cidadeDestinoSelecionada: any = undefined;
-  constructor(private veiculoService: VeiculoService,
+  constructor(private fb: FormBuilder,
     private estadoService: EstadoService, private empresaService: EmpresaService) { }
 
   ngOnInit() {
+    this.formFrete = this.fb.group({
+      empresa: ['', Validators.required],
+      estadoSelecionado: ['', Validators.required],
+      cidadeSelecionada: ['', Validators.required],
+      estadoDestinoSelecionado: ['', Validators.required],
+      cidadeDestinoSelecionada: ['', Validators.required],
+      veiculo: ['', Validators.required],
+      carroceria: ['', Validators.required],
+      preco: [''],
+      peso: ['', Validators.required],
+      produto: ['', Validators.required],
+      especie: [''],
+      agenciamento: [false, Validators.required],
+      rastreamento: [false, Validators.required],
+      lona: [false, Validators.required],
+      descricao: [''],
+    })
     this.carregaEstados();
+    this.carregaEmpresa();
   }
 
-  carregaVeiculo() {
-    this.veiculoService.getVeiculo().subscribe(data => {
-      this.veiculos = data;
+  carregaEmpresa() {
+    this.empresaService.getEmpresas().subscribe(data => {
+      this.empresas = data;
     });
   }
 
@@ -139,6 +198,10 @@ export class FreteFormPage implements OnInit {
       this.municipios = [];
       this.municipios = data;
     });
+  }
+
+  cadastrar() {
+    console.log(this.formFrete.getRawValue());
   }
 
 }
