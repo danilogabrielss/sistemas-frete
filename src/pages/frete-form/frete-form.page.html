@@ -14,8 +14,9 @@
 
       <ion-col col-12>
         <ion-item>
-          <ion-select placeholder="Empresa" formControlName="empresa">
-            <ion-select-option *ngFor="let empresa of empresas" [value]="empresa.id">{{empresa.nome}}
+          <ion-label>Empresa</ion-label>
+          <ion-select formControlName="empresaId">
+            <ion-select-option *ngFor="let empresa of empresas" [value]="empresa.cnpj">{{empresa.nome}}
             </ion-select-option>
           </ion-select>
         </ion-item>
@@ -23,39 +24,45 @@
 
       <ion-col col-12>
         <ion-item>
-          <ion-select placeholder="Origem Estado" (ionChange)="onChange();" [(ngModel)]="estadoSelecionado"
-            formControlName="estado_origem">
+          <ion-label>Origem Estado</ion-label>
+          <ion-select [(ngModel)]="estadoSelecionado" formControlName="estado_origem" (ionChange)="onChange();">
             <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col col-12>
-        <ion-select placeholder="Origem Cidade" [(ngModel)]="cidadeSelecionada" formControlName="cidade_origem">
-          <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
-          </ion-select-option>
-        </ion-select>
+        <ion-item>
+          <ion-label>Origem Cidade</ion-label>
+          <ion-select [(ngModel)]="cidadeSelecionada" formControlName="cidade_origem">
+            <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
 
       <ion-col col-12>
         <ion-item>
-          <ion-select placeholder="Destino Estado" (ionChange)="onChangeDestino();"
-            [(ngModel)]="estadoDestinoSelecionado" formControlName="estado_destino">
+          <ion-label>Destino Estado</ion-label>
+          <ion-select [(ngModel)]="estadoDestinoSelecionado" formControlName="estado_destino"
+            (ionChange)="onChangeDestino();">
             <ion-select-option *ngFor="let estado of estados" [value]="estado">{{estado.nome}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col col-12>
-        <ion-select placeholder="Destino Cidade" [(ngModel)]="cidadeDestinoSelecionada"
-          formControlName="cidade_destino">
-          <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
-          </ion-select-option>
-        </ion-select>
+        <ion-item>
+          <ion-label>Destino Cidade</ion-label>
+          <ion-select [(ngModel)]="cidadeDestinoSelecionada" formControlName="cidade_destino">
+            <ion-select-option *ngFor="let municipio of municipios" [value]="municipio">{{municipio.nome}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
 
       <ion-col col-12>
         <ion-item>
           <ion-label>Veículo</ion-label>
-          <ion-select formControlName="veiculo" [multiple]="true">
+          <ion-select formControlName="veiculoId">
             <ion-select-option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{veiculo.veiculo}}
             </ion-select-option>
           </ion-select>
@@ -65,7 +72,7 @@
       <ion-col col-12>
         <ion-item>
           <ion-label>Carroceria</ion-label>
-          <ion-select formControlName="carroceria" [multiple]="true">
+          <ion-select formControlName="carroceriaId">
             <ion-select-option *ngFor="let carroceria of carrocerias" [value]="carroceria.id">
               {{carroceria.carroceria}}
             </ion-select-option>
@@ -99,8 +106,36 @@
 
       <ion-col col-12>
         <ion-item>
+          <ion-label>Data Coleta</ion-label>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime (ionChange)="getDate($event)" id="datetime" presentation="date" showDefaultButtons="true"
+                [min]="dataHoje"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
+          <ion-label>Data Entrega</ion-label>
+          <ion-datetime-button datetime="datetimeEntrega"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime (ionChange)="getDateEntrega($event)" id="datetimeEntrega" presentation="date"
+                showDefaultButtons="true" [min]="dataHoje"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item>
           <ion-label>Espécie</ion-label>
-          <ion-select formControlName="especie">
+          <ion-select formControlName="especieId">
             <ion-select-option *ngFor="let especie of especies" [value]="especie.id">
               {{especie.especie}}
             </ion-select-option>

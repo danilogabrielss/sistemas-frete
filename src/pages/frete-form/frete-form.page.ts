@@ -152,27 +152,31 @@ export class FreteFormPage implements OnInit {
 
   public estadoDestinoSelecionado: any = undefined;
   public cidadeDestinoSelecionada: any = undefined;
+  dataHoje: any = new Date().toISOString();
+
   constructor(private fb: FormBuilder,
     private estadoService: EstadoService, private empresaService: EmpresaService,
     private freteService: FreteService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.formFrete = this.fb.group({
-      empresa: ['', Validators.required],
+      empresaId: ['', Validators.required],
       estado_origem: ['', Validators.required],
       cidade_origem: ['', Validators.required],
       estado_destino: ['', Validators.required],
       cidade_destino: ['', Validators.required],
-      veiculo: ['', Validators.required],
-      carroceria: ['', Validators.required],
+      veiculoId: ['', Validators.required],
+      carroceriaId: ['', Validators.required],
       preco: [''],
       peso: ['', Validators.required],
       produto: ['', Validators.required],
-      especie: [''],
+      especieId: ['', Validators.required],
       agenciamento: [false, Validators.required],
       rastreamento: [false, Validators.required],
       lona: [false, Validators.required],
       descricao: [''],
+      data_coleta: ['', Validators.required],
+      data_entrega: ['', Validators.required],
     })
     this.carregaEstados();
     this.carregaEmpresa();
@@ -206,18 +210,23 @@ export class FreteFormPage implements OnInit {
 
   cadastrar() {
     var params: FreteTO = this.formFrete.getRawValue();
-    params.sg_estado_origem = this.formFrete.get('estado_origem').value.nome;
+    params.sg_estado_origem = this.formFrete.get('estado_origem').value.sigla;
     params.nm_cidade_origem = this.formFrete.get('cidade_origem').value.nome;
-    params.sg_estado_destino = this.formFrete.get('estado_destino').value.nome;
+    params.sg_estado_destino = this.formFrete.get('estado_destino').value.sigla;
     params.nm_cidade_destino = this.formFrete.get('cidade_destino').value.nome;
 
-    params.estado_origem = this.formFrete.get('estado_origem').value.id;
-    params.cidade_origem = this.formFrete.get('cidade_origem').value.id;
-    params.estado_destino = this.formFrete.get('estado_destino').value.id;
-    params.cidade_destino = this.formFrete.get('cidade_destino').value.id;
+    params.estado_origem = this.formFrete.get('estado_origem').value.id.toString();
+    params.cidade_origem = this.formFrete.get('cidade_origem').value.id.toString();
+    params.estado_destino = this.formFrete.get('estado_destino').value.id.toString();
+    params.cidade_destino = this.formFrete.get('cidade_destino').value.id.toString();
+    params.ativo = true;
+    params.preco = this.formFrete.get('preco').value.toString();
+    params.peso = this.formFrete.get('peso').value.toString();
+
     console.log(params);
     this.freteService.postFrete(params).subscribe((data: any) => {
-      this.alerta(data);
+      console.log(data);
+      this.alerta(data.toString());
     });
   }
 
@@ -227,6 +236,22 @@ export class FreteFormPage implements OnInit {
       buttons: ['Ok'],
     });
     alert.present();
+  }
+
+  getDate(e) {
+    let date = new Date(e.target.value).toISOString().substring(0, 10);
+    this.formFrete.get('data_coleta').setValue(date, {
+      onlyself: true
+    });
+    console.log(this.formFrete.get('data_coleta').value);
+  }
+
+  getDateEntrega(e) {
+    let date = new Date(e.target.value).toISOString().substring(0, 10);
+    this.formFrete.get('data_entrega').setValue(date, {
+      onlyself: true
+    });
+    console.log(this.formFrete.get('data_entrega').value);
   }
 
 }
