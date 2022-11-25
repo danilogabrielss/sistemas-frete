@@ -226,7 +226,11 @@ export class FreteFormPage implements OnInit {
     console.log(params);
     this.freteService.postFrete(params).subscribe((data: any) => {
       console.log(data);
-      this.alerta(data.toString());
+      if (data != null)
+        this.alerta('Erro ao cadastrar frete.');
+      else {
+        this.alerta('Frete cadastrado com sucesso.');
+      }
     });
   }
 
