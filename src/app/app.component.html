@@ -8,12 +8,29 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-list id="inbox-list">
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
-            routerLinkActive="selected">
-            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-            <ion-label>{{ p.title }}</ion-label>
-          </ion-item>
+        <ion-menu-toggle auto-hide="false">
+          <b>
+            Visibilidade para os caminhoneiros
+          </b>
+          <div *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </div>
+          <br>
+          <b>
+            Visibilidade para as empresas
+          </b>
+          <br>
+          <div *ngFor="let emp of menuEmpresas;">
+            <ion-item routerDirection="root" [routerLink]="[emp.url]" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="emp.icon + '-outline'" [md]="emp.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ emp.title }}</ion-label>
+            </ion-item>
+          </div>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
