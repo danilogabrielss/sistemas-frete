@@ -22,10 +22,11 @@ export class FreteDetailPage implements OnInit {
     private freteService: FreteService, private navCtrl: NavController, private empresaService: EmpresaService, private loadingController: LoadingController) {
     this.router.params.subscribe((params: any) => {
       this.idFrete = params.id;
-      this.carregaFrete();
     });
   }
-  ngOnInit() { }
+  ngOnInit() {
+    this.carregaFrete();
+  }
 
   async carregaFrete() {
     this.freteService.getFreteByid(this.idFrete).subscribe(async (data: any) => {
@@ -53,6 +54,18 @@ export class FreteDetailPage implements OnInit {
         document.getElementById('lblLona').innerHTML = this.frete.lona == true ? '<ion-icon name="checkmark-circle-outline"></ion-icon>' : '<ion-icon name="close-circle-outline"></ion-icon>';
         document.getElementById('lblPeso').innerHTML = this.frete.peso + 'kgs';
         document.getElementById('lblEspecie').innerHTML = this.frete.tipo_carga;
+
+        var carroceiraRet: string = '';
+        data.Carroceria_Frete.forEach((carroceria: any) => {
+          carroceiraRet += carroceria.carroceria.carroceria + ', ';
+        });
+        document.getElementById('lblCarroceria').innerHTML = carroceiraRet;
+
+        var veiculoRet: string = '';
+        data.Veiculo_Frete.forEach((veiculo: any) => {
+          veiculoRet += veiculo.veiculo.veiculo + ', ';
+        });
+        document.getElementById('lblVeiculo').innerHTML = veiculoRet;
 
         var empresa = res.req1;
         var contatos: string;
