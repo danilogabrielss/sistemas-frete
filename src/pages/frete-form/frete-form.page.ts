@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
 import { EmpresaTO } from 'src/model/EmpresaTO';
 import { FreteTO } from 'src/model/FreteTO';
@@ -156,7 +156,7 @@ export class FreteFormPage implements OnInit {
 
   constructor(private fb: FormBuilder,
     private estadoService: EstadoService, private empresaService: EmpresaService,
-    private freteService: FreteService, private alertCtrl: AlertController) { }
+    private freteService: FreteService, private alertCtrl: AlertController, private loadingController: LoadingController) { }
 
   ngOnInit() {
     this.formFrete = this.fb.group({
@@ -208,12 +208,16 @@ export class FreteFormPage implements OnInit {
     });
   }
 
-  cadastrar() {
+  async cadastrar() {
+    var loading = this.loadingController.create({
+      message: 'Carregando'
+    });
+    (await loading).present();
     var params: FreteTO = this.formFrete.getRawValue();
-    params.sg_estado_origem = this.formFrete.get('estado_origem').value.sigla;
+    /*params.sg_estado_origem = this.formFrete.get('estado_origem').value.sigla;
     params.nm_cidade_origem = this.formFrete.get('cidade_origem').value.nome;
     params.sg_estado_destino = this.formFrete.get('estado_destino').value.sigla;
-    params.nm_cidade_destino = this.formFrete.get('cidade_destino').value.nome;
+    params.nm_cidade_destino = this.formFrete.get('cidade_destino').value.nome;*/
 
     params.estado_origem = this.formFrete.get('estado_origem').value.id.toString();
     params.cidade_origem = this.formFrete.get('cidade_origem').value.id.toString();
@@ -224,13 +228,14 @@ export class FreteFormPage implements OnInit {
     params.peso = this.formFrete.get('peso').value.toString();
 
     console.log(params);
-    this.freteService.postFrete(params).subscribe((data: any) => {
+    this.freteService.postFrete(params).subscribe(async(data: any) => {      
       console.log(data);
-      if (data != null)
+      if (data.fretes.id == null)
         this.alerta('Erro ao cadastrar frete.');
       else {
         this.alerta('Frete cadastrado com sucesso.');
       }
+      (await loading).dismiss();
     });
   }
 

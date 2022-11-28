@@ -62,7 +62,7 @@
       <ion-col col-12>
         <ion-item>
           <ion-label>Veículo</ion-label>
-          <ion-select formControlName="veiculoId">
+          <ion-select formControlName="veiculoId" [multiple]="true">
             <ion-select-option *ngFor="let veiculo of veiculos" [value]="veiculo.id">{{veiculo.veiculo}}
             </ion-select-option>
           </ion-select>
@@ -72,7 +72,7 @@
       <ion-col col-12>
         <ion-item>
           <ion-label>Carroceria</ion-label>
-          <ion-select formControlName="carroceriaId">
+          <ion-select formControlName="carroceriaId" [multiple]="true">
             <ion-select-option *ngFor="let carroceria of carrocerias" [value]="carroceria.id">
               {{carroceria.carroceria}}
             </ion-select-option>
