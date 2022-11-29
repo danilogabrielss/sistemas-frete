@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController, NavParams } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { CaminhoneiroTO } from 'src/model/CaminhoneiroTO';
 import { CarroceriaTO } from 'src/model/CarroceriaTO';
 import { VeiculoTO } from 'src/model/VeiculoTO';
@@ -101,7 +101,7 @@ export class CaminhoneiroFormPage implements OnInit {
       "carroceria": "Sider"
     }
   ];
-  constructor(private fb: FormBuilder, private caminhoneiroService: CaminhoneiroService, private navParams: NavParams, private modalCtrl: ModalController) {
+  constructor(private fb: FormBuilder, private caminhoneiroService: CaminhoneiroService, private navParams: NavParams, private modalCtrl: ModalController, private loadingController: LoadingController, private alertCtrl: AlertController) {
     this.caminhoneiroForm = this.fb.group({
       cpf: ['', Validators.required],
       nome: ['', Validators.required],
@@ -130,17 +130,47 @@ export class CaminhoneiroFormPage implements OnInit {
   }
 
   postCaminhoneiro() {
-    console.log(this.caminhoneiroForm.getRawValue());
+    var loading = this.loadingController.create({
+      message: 'Carregando'
+    });
 
     this.caminhoneiro = this.caminhoneiroForm.getRawValue();
+    this.caminhoneiro.cpf = this.caminhoneiroForm.get('cpf').value.toString();
+    this.caminhoneiro.celular = this.caminhoneiroForm.get('celular').value.toString();
 
-    this.caminhoneiroService.postCaminhoneiro(this.caminhoneiro).subscribe((data: any) => {
-      alert.call(data.error);
-    });
+    console.log(this.caminhoneiro);
+
+    this.caminhoneiroService.postCaminhoneiro(this.caminhoneiro).subscribe(async (data: any) => {
+      (await loading).present();
+      console.log(data);
+      this.alerta(data.toString());
+      (await loading).dismiss();
+    }, (async error => {
+      console.log(error);
+      var mensagemAlerta: string = '';
+      error.error.errors.forEach(element => {
+        var ultimoErro = error.error.errors[error.error.errors.length - 1];
+        if (element != ultimoErro)
+          mensagemAlerta += element.msg + ', ';
+        else {
+          mensagemAlerta += element.msg
+        }
+      });
+      this.alerta(mensagemAlerta);
+      (await loading).dismiss();
+    }));
   }
 
   back() {
     this.modalCtrl.dismiss();
+  }
+
+  async alerta(mensagem) {
+    var alert = await this.alertCtrl.create({
+      message: mensagem,
+      buttons: ['Ok'],
+    });
+    alert.present();
   }
 
 }
