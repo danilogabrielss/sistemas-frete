@@ -156,7 +156,6 @@ export class CaminhoneiroFormPage implements OnInit {
           mensagemAlerta += element.msg
         }
       });
-      console.log(mensagemAlerta);
       this.alerta(mensagemAlerta);
       (await loading).dismiss();
     }));
