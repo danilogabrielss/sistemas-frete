@@ -143,7 +143,7 @@ export class CaminhoneiroFormPage implements OnInit {
     this.caminhoneiroService.postCaminhoneiro(this.caminhoneiro).subscribe(async (data: any) => {
       (await loading).present();
       console.log(data);
-      this.alerta(data.toString());
+      this.alerta('Caminhoneiro criado com sucesso.');
       (await loading).dismiss();
     }, (async error => {
       console.log(error);
@@ -156,6 +156,7 @@ export class CaminhoneiroFormPage implements OnInit {
           mensagemAlerta += element.msg
         }
       });
+      console.log(mensagemAlerta);
       this.alerta(mensagemAlerta);
       (await loading).dismiss();
     }));
