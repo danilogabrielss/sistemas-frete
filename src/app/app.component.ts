@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Tela inicial', url: '/home', icon: 'home' },
+    //{ title: 'Tela inicial', url: '/home', icon: 'home' },
     { title: 'Cadastro de Caminhoneiros', url: '/caminhoneiro-form', icon: 'add' },
     { title: 'Listagem de Frete', url: '/frete-list', icon: 'list' },
     { title: 'Procura Frete', url: '/procura-frete', icon: 'search' },
