@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list *ngFor="let caminhoneiro of procuraFretes;" lines="full" class="ion-text-wrap">
     <ion-item>
-      <ion-label>
+      <ion-label text-wrap>
         <h2 margin>
           {{ caminhoneiro.nm_cidade_origem }} / {{ caminhoneiro.sg_estado_origem}} para
           {{ caminhoneiro.nm_cidade_destino }} / {{caminhoneiro.sg_estado_destino}}
