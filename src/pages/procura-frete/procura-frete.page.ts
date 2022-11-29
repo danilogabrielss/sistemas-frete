@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { CaminhoneiroTO } from 'src/model/CaminhoneiroTO';
 import { CaminhoneiroService } from 'src/services/caminhoneiro.service';
 import { EstadoService } from 'src/services/estado.service';
@@ -29,16 +30,16 @@ export class ProcuraFretePage implements OnInit {
   public data_inicio = undefined;
 
   constructor(public fb: FormBuilder, private estadoService: EstadoService, private procuraFreteService: ProcuraFreteService,
-    private caminhoneiroService: CaminhoneiroService) { }
+    private caminhoneiroService: CaminhoneiroService, private loadingController: LoadingController, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.procuraFreteForm = this.fb.group({
       cpf: [''],
       estado_origem: ['', Validators.required],
       cidade_origem: ['', Validators.required],
-      data_inicio: ['', Validators.required],
-      estado_destino: ['', Validators.required],
-      cidade_destino: ['', Validators.required],
+      data_inicio: [this.dataHoje],
+      estado_destino: [null],
+      cidade_destino: [null],
     });
     this.carregaEstados();
     this.carregaCaminhoneiro();
@@ -79,21 +80,25 @@ export class ProcuraFretePage implements OnInit {
     });
   }
 
-  salvarProcuraFrete() {
+  async salvarProcuraFrete() {
+    var loading = this.loadingController.create({
+      message: 'Carregando'
+    });
+    (await loading).present();
     var params = {
       cpf: this.procuraFreteForm.get('cpf').value,
-      estado_origem: this.estado_origem,
-      cidade_origem: this.cidade_origem,
+      estado_origem: this.procuraFreteForm.get('estado_origem').value.id.toString(),
+      cidade_origem: this.procuraFreteForm.get('cidade_origem').value.id.toString(),
       data_inicio: this.data_inicio,
-      estado_destino: this.estado_destino,
-      cidade_destino: this.cidade_destino
+      estado_destino: this.procuraFreteForm.get('estado_destino').value != null ? this.procuraFreteForm.get('estado_destino').value.id.toString() : '',
+      cidade_destino: this.procuraFreteForm.get('cidade_destino').value != null ? this.procuraFreteForm.get('cidade_destino').value.id.toString() : '',
+      ativo: true
     }
     console.log(params);
 
-    this.procuraFreteService.postProcuraFrete(params).subscribe((data: any) => {
-      if (data.status == 200) {
-        alert.call('Sucess');
-      }
+    this.procuraFreteService.postProcuraFrete(params).subscribe(async (data: any) => {
+      console.log(data);
+      (await loading).dismiss();
     });
   }
 
@@ -103,6 +108,14 @@ export class ProcuraFretePage implements OnInit {
       onlyself: true
     });
     this.data_inicio = e.detail.value;
+  }
+
+  async alerta(mensagem) {
+    var alert = await this.alertCtrl.create({
+      message: mensagem,
+      buttons: ['Ok'],
+    });
+    alert.present();
   }
 
 }
